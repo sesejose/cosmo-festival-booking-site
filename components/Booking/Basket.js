@@ -3,6 +3,33 @@ import { useEffect, useState } from "react";
 
 export default function Basket(props) {
   const [data, setData] = useState();
+  const [cartReg, setCartReg] = useState([]);
+
+  // Fetching tickets from Supabase (Tickets table)
+  useEffect(() => {
+    async function getData() {
+      const url = "https://udfchraccrfladlsvbzh.supabase.co/rest/v1/tickets";
+      const headers = {
+        "Content-Type": "application/jsonS",
+        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkZmNocmFjY3JmbGFkbHN2YnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA4NzQzODEsImV4cCI6MTk4NjQ1MDM4MX0.0eTW-TRibvc-FFW6XlCaTEfX52g-3SsrjMh3t7XXvIw",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkZmNocmFjY3JmbGFkbHN2YnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA4NzQzODEsImV4cCI6MTk4NjQ1MDM4MX0.0eTW-TRibvc-FFW6XlCaTEfX52g-3SsrjMh3t7XXvIw",
+        Prefer: "return-representation",
+      };
+      const options = {
+        method: "GET",
+        headers: headers,
+      };
+      const body = {
+        body: "false",
+      };
+      // Await then execute the code.
+      const res = await fetch(url, options, body); // Fetchs the data (await)
+      const tickets = await res.json(); //When it's done getting it
+      // return data; // This returned tickets in an array - square brackets to define each one.
+      setCartReg(tickets[0]);
+    }
+    getData();
+  }, []);
 
   // Fetching the cosmo_festival table from Supabase
   useEffect(() => {
@@ -27,6 +54,7 @@ export default function Basket(props) {
     }
     getData();
   }, []);
+
   return (
     <>
       <section id="basket">
@@ -41,7 +69,7 @@ export default function Basket(props) {
             <div id="ticket-template">
               <div className="posts">
                 <div className="post-quantity-remove">
-                  <h4 className="turquoise type">{props.cartReg.displayname}</h4>
+                  <h4 className="turquoise type">{cartReg.displayname}</h4>
                   {/* <h4 className="turquoise type">{props.regName}</h4> */}
                   <h5 className="white price">Ticket price: DKK {props.regPrice}</h5>
                 </div>

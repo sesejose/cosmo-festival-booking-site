@@ -71,7 +71,7 @@ export default function Basket(props) {
                 <div className="post-quantity-remove">
                   <h4 className="turquoise type">{cartReg.displayname}</h4>
                   {/* <h4 className="turquoise type">{props.regName}</h4> */}
-                  <h5 className="white price">Ticket price: DKK {props.regPrice}</h5>
+                  <h5 className="white price">DKK {props.regPrice}</h5>
                 </div>
                 <div className="post-type-price">
                   <h4 className="turquoise type">x{props.regAmount}</h4>
@@ -84,7 +84,7 @@ export default function Basket(props) {
               <div className="posts">
                 <div className="post-quantity-remove">
                   <h4 className="turquoise type">{props.vipName}</h4>
-                  <h5 className="white price">Ticket price: DKK {props.vipPrice}</h5>
+                  <h5 className="white price">DKK {props.vipPrice}</h5>
                 </div>
                 <div className="post-type-price">
                   <h4 className="turquoise type">x{props.vipAmount}</h4>
@@ -114,7 +114,7 @@ export default function Basket(props) {
             <div className="posts">
               <div className="post-quantity-remove">
                 <h4 className="turquoise">Tent 2 persons</h4>
-                <h5 className="white">Price: DKK 299</h5>
+                <h5 className="white">DKK 299</h5>
               </div>
               <div className="post-type-price">
                 <h4 className="turquoise">x{props.totalTent2}</h4>
@@ -125,7 +125,7 @@ export default function Basket(props) {
             <div className="posts">
               <div className="post-quantity-remove">
                 <h4 className="turquoise">Tent 3 persons</h4>
-                <h5 className="white">Price: DKK 399</h5>
+                <h5 className="white">DKK 399</h5>
               </div>
               <div className="post-type-price">
                 <h4 className="turquoise">x{props.totalTent3}</h4>

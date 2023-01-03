@@ -88,7 +88,7 @@ export default function Tickets(props) {
     }
   }
 
-  function greenCamping(e) {
+  function greenCamping() {
     // function to add the green camping price to total price
     const greenCheck = document.querySelector("#check-green-camping");
     if (greenCheck.checked == true) {

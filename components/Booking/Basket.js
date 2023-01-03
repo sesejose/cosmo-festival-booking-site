@@ -41,7 +41,8 @@ export default function Basket(props) {
             <div id="ticket-template">
               <div className="posts">
                 <div className="post-quantity-remove">
-                  <h4 className="turquoise type">{props.regName}</h4>
+                  <h4 className="turquoise type">{props.cartReg.displayname}</h4>
+                  {/* <h4 className="turquoise type">{props.regName}</h4> */}
                   <h5 className="white price">Ticket price: DKK {props.regPrice}</h5>
                 </div>
                 <div className="post-type-price">

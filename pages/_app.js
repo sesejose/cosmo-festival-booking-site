@@ -6,17 +6,12 @@ import { useState } from "react";
 function MyApp({ Component, pageProps }) {
   return (
     <Layout>
-      <Component
-        {...pageProps}
-        // bookingInfo={bookingInfo}
-        // setBookingInfo={setBookingInfo}
-        // setallTickets={setallTickets}
-        // setAccomodation={setAccomodation}
-        // setExtras={setExtras}
-      />
+      <Component {...pageProps} />
     </Layout>
   );
 }
+export default MyApp;
+
 // {
 //   "id": 3,
 //   "created_at": "2022-10-24T09:01:22.863572+00:00",
@@ -31,7 +26,6 @@ function MyApp({ Component, pageProps }) {
 //   "tent2": 2,
 //   "tent3": 1
 //   }
-export default MyApp;
 
 // all the endpoints
 // http://localhost:8080/available-spots

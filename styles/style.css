@@ -484,7 +484,8 @@ p {
 
 #pages {
   width: 100%;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   height: 154vh;
 }
 
@@ -508,7 +509,7 @@ p {
 /* width */
 #pages::-webkit-scrollbar,
 .basket-container::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
 }
 
 /* Track */

@@ -507,28 +507,28 @@ p {
 /* Style scrollbar */
 /* width */
 #pages::-webkit-scrollbar,
-#basket-container::-webkit-scrollbar {
+.basket-container::-webkit-scrollbar {
   width: 5px;
 }
 
 /* Track */
 #pages::-webkit-scrollbar,
-#basket-container::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px var(--pink);
+.basket-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px var(--black);
   border-radius: 10px;
 }
 
 /* Handle */
 #pages::-webkit-scrollbar-thumb,
-#basket-container::-webkit-scrollbar-thumb {
-  background: var(--black);
+.basket-container::-webkit-scrollbar-thumb {
+  background: var(--pink);
   border-radius: 10px;
 }
 
 /* Handle on hover */
 #pages::-webkit-scrollbar-thumb:hover,
-#basket-container::-webkit-scrollbar-thumb:hover {
-  background: var(--black);
+.basket-container::-webkit-scrollbar-thumb:hover {
+  background: var(--pink);
 }
 
 .container-about {

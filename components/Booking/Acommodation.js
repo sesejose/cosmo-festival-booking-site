@@ -117,8 +117,8 @@ export default function Acommodation(props) {
                   <input type="radio" id="alfheim" name="campingArea" value="Alfheim" className="radio-input" onClick={newFunction}></input>
                 </div>
               </div>
-              <button className="btn-main">Choose accommodation</button>
             </form>
+            <button className="btn-main">Choose accommodation</button>
           </div>
           <div></div>
         </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useState, useEffect, useRef } from "react";
+import Pages from "../../components/Booking/Pages";
 import Basket from "../../components/Booking/Basket";
 import Ticket from "../../components/Booking/Ticket";
 import Acommodation from "../../components/Booking/Acommodation";
@@ -161,96 +162,61 @@ export default function TicketsPage(props) {
 
   return (
     <>
-      <section id="pages">
-        <div className="container-page">
-          <Ticket
-            areas={props.areas}
-            totalReg={totalReg}
-            totalVip={totalVip}
-            cartReg={cartReg}
-            cartVip={cartVip}
-            addRegToCart={addRegToCart}
-            addVipToCart={addVipToCart}
-            checkAvailability={checkAvailability}
-            spot={spot}
-            updateGreen={updateGreen}
-            green={green}
-            getTents={getTents}
-          />
+      <Pages
+        areas={props.areas}
+        cartReg={cartReg}
+        regName={regName}
+        regPrice={regPrice}
+        regAmount={regAmount}
+        cartVip={cartVip}
+        vipName={vipName}
+        vipPrice={vipPrice}
+        vipAmount={vipAmount}
+        addRegToCart={addRegToCart}
+        addVipToCart={addVipToCart}
+        spot={spot}
+        subtotalPrice={subtotalPrice}
+        totalReg={totalReg}
+        totalVip={totalVip}
+        totalPrice={totalPrice}
+        fixedCampingPrice={fixedCampingPrice}
+        greenPrice={greenPrice}
+        green={green}
+        updateGreen={updateGreen}
+        getTents={getTents}
+        totalTent2={totalTent2}
+        totalTent3={totalTent3}
+        tent2Price={tent2Price}
+        tent3Price={tent3Price}
+        checkAvailability={checkAvailability}
+        defineAcommodation={defineAcommodation}
+      ></Pages>
 
-          <Acommodation
-            areas={props.areas}
-            cartReg={cartReg}
-            cartVip={cartVip}
-            addRegToCart={addRegToCart}
-            addVipToCart={addVipToCart}
-            totalReg={totalReg}
-            spot={spot}
-            defineAcommodation={defineAcommodation}
-            totalVip={totalVip}
-            subtotalPrice={subtotalPrice}
-            totalPrice={totalPrice}
-            setReserveID={setReserveID}
-            reserveID={reserveID}
-          />
-
-          <Personal
-            areas={props.areas}
-            cartReg={cartReg}
-            cartVip={cartVip}
-            addRegToCart={addRegToCart}
-            addVipToCart={addVipToCart}
-            totalReg={totalReg}
-            totalVip={totalVip}
-            spot={spot}
-            subtotalPrice={subtotalPrice}
-            totalPrice={totalPrice}
-            setReserveID={setReserveID}
-            reserveID={reserveID}
-          />
-
-          <Payment
-            areas={props.areas}
-            cartReg={cartReg}
-            cartVip={cartVip}
-            addRegToCart={addRegToCart}
-            addVipToCart={addVipToCart}
-            totalReg={totalReg}
-            totalVip={totalVip}
-            checkAvailability={checkAvailability}
-            spot={spot}
-            defineAcommodation={defineAcommodation}
-            subtotalPrice={subtotalPrice}
-            totalPrice={totalPrice}
-          />
-        </div>
-
-        <Basket
-          areas={props.areas}
-          cartReg={cartReg}
-          regName={regName}
-          regPrice={regPrice}
-          regAmount={regAmount}
-          vipName={vipName}
-          vipPrice={vipPrice}
-          vipAmount={vipAmount}
-          cartVip={cartVip}
-          addRegToCart={addRegToCart}
-          addVipToCart={addVipToCart}
-          spot={spot}
-          subtotalPrice={subtotalPrice}
-          totalReg={totalReg}
-          totalVip={totalVip}
-          totalPrice={totalPrice}
-          fixedCampingPrice={fixedCampingPrice}
-          greenPrice={greenPrice}
-          green={green}
-          totalTent2={totalTent2}
-          totalTent3={totalTent3}
-          tent2Price={tent2Price}
-          tent3Price={tent3Price}
-        />
-      </section>
+      <Basket
+        areas={props.areas}
+        cartReg={cartReg}
+        regName={regName}
+        regPrice={regPrice}
+        regAmount={regAmount}
+        vipName={vipName}
+        vipPrice={vipPrice}
+        vipAmount={vipAmount}
+        cartVip={cartVip}
+        addRegToCart={addRegToCart}
+        addVipToCart={addVipToCart}
+        spot={spot}
+        subtotalPrice={subtotalPrice}
+        totalReg={totalReg}
+        totalVip={totalVip}
+        totalPrice={totalPrice}
+        fixedCampingPrice={fixedCampingPrice}
+        greenPrice={greenPrice}
+        green={green}
+        totalTent2={totalTent2}
+        totalTent3={totalTent3}
+        tent2Price={tent2Price}
+        tent3Price={tent3Price}
+      />
     </>
   );
 }

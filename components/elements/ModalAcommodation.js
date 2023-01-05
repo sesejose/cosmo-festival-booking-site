@@ -5,11 +5,12 @@ function ModalAcommodation() {
     <>
       <section>
         <div>
-          <div className="forms-intro-text">
+          <div className="forms-intro-text-modal">
             <h1 className="turquoise text-center">Acommodation</h1>
             <p className="text-center">Select the area in the camping where you wanna set your tent/s.</p>
           </div>
-          <div className="flex-row">
+
+          <div className="flex-row-modal">
             <div className="modal-acommodation-container">
               <div className="modal-map-container">
                 <div className="camping-areas-row">

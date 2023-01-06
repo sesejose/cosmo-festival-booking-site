@@ -1,13 +1,16 @@
-import Layout from "../components/Layout";
-// import "../styles/globals.css";
-import "../styles/style.css";
 import { useState } from "react";
+import Context from "../components/Context";
+import Layout from "../components/Layout";
+import "../styles/style.css";
 
 function MyApp({ Component, pageProps }) {
+  const [state, setState] = useState("default");
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Context.Provider value={{ state, setState }}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Context.Provider>
   );
 }
 export default MyApp;

@@ -1,9 +1,11 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import Context from "../Context";
 
 export default function Basket(props) {
   const [data, setData] = useState();
   const [cartReg, setCartReg] = useState([]);
+  const context = useContext(Context);
 
   // Fetching tickets from Supabase (Tickets table)
   useEffect(() => {
@@ -69,6 +71,10 @@ export default function Basket(props) {
             <div className="posts">
               <h4 className="white">Total of tickets:</h4>
               <h4 className="turquoise">{props.totalReg + props.totalVip}</h4>
+            </div>
+            <div className="posts">
+              <h4 className="white">Testing the context</h4>
+              <h4 className="turquoise">{context.state}</h4>
             </div>
           </div>
 

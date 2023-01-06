@@ -187,9 +187,10 @@ export default function Tickets(props) {
               Add to cart
             </button>
           </div>
-ty();
-              // step2();
-            }}
-          >
-            Add to cart
-          </button>
+        </div>
+
+        {/* </div> */}
+      </section>
+    </>
+  );
+}

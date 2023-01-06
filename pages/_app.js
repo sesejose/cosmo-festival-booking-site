@@ -171,36 +171,41 @@ function MyApp({ Component, pageProps }) {
   const fixedCampingPrice = 99;
 
   return (
-    <Context.Provider value={{ state, setState }}>
-      <Layout
-        areas={pageProps.areas}
-        cartReg={cartReg}
-        regName={regName}
-        regPrice={regPrice}
-        regAmount={regAmount}
-        cartVip={cartVip}
-        vipName={vipName}
-        vipPrice={vipPrice}
-        vipAmount={vipAmount}
-        addRegToCart={addRegToCart}
-        addVipToCart={addVipToCart}
-        spot={spot}
-        subtotalPrice={subtotalPrice}
-        totalReg={totalReg}
-        totalVip={totalVip}
-        totalPrice={totalPrice}
-        fixedCampingPrice={fixedCampingPrice}
-        greenPrice={greenPrice}
-        green={green}
-        updateGreen={updateGreen}
-        getTents={getTents}
-        totalTent2={totalTent2}
-        totalTent3={totalTent3}
-        tent2Price={tent2Price}
-        tent3Price={tent3Price}
-        checkAvailability={checkAvailability}
-        defineAcommodation={defineAcommodation}
-      >
+    <Context.Provider
+      value={{ state, setState }}
+      area1={{ area1 }}
+      area2={{ area2 }}
+      area3={{ area3 }}
+      area4={{ area4 }}
+      area5={{ area5 }}
+      cartReg={{ cartReg }}
+      regName={{ regName }}
+      regPrice={{ regPrice }}
+      regAmount={{ regAmount }}
+      cartVip={{ cartVip }}
+      vipName={{ vipName }}
+      vipPrice={{ vipPrice }}
+      vipAmount={vipAmount}
+      addRegToCart={{ addRegToCart }}
+      addVipToCart={{ addVipToCart }}
+      spot={{ spot }}
+      subtotalPrice={{ subtotalPrice }}
+      totalReg={{ totalReg }}
+      totalVip={{ totalVip }}
+      totalPrice={{ totalPrice }}
+      fixedCampingPrice={{ fixedCampingPrice }}
+      greenPrice={{ greenPrice }}
+      green={{ green }}
+      updateGreen={{ updateGreen }}
+      getTents={{ getTents }}
+      totalTent2={{ totalTent2 }}
+      totalTent3={{ totalTent3 }}
+      tent2Price={{ tent2Price }}
+      tent3Price={{ tent3Price }}
+      checkAvailability={{ checkAvailability }}
+      defineAcommodation={{ defineAcommodation }}
+    >
+      <Layout>
         <Component {...pageProps} />
       </Layout>
     </Context.Provider>

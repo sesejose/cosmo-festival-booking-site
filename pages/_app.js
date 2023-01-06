@@ -158,7 +158,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Context.Provider value={{ state, setState }}>
       <Layout
-        areas={areas}
+        areas={props.areas}
         cartReg={cartReg}
         regName={regName}
         regPrice={regPrice}

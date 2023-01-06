@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Context from "../components/Context";
 import Layout from "../components/Layout";
 import "../styles/style.css";
@@ -27,11 +27,11 @@ function MyApp({ Component, pageProps }) {
   const [status3, setStatus3] = useState(false);
   const [status4, setStatus4] = useState(false);
   const [status5, setStatus5] = useState(false);
-  const area1 = props.areas[0].available;
-  const area2 = props.areas[1].available;
-  const area3 = props.areas[2].available;
-  const area4 = props.areas[3].available;
-  const area5 = props.areas[4].available;
+  const [area1, setArea1] = useState();
+  const [area2, setArea2] = useState();
+  const [area3, setArea3] = useState();
+  const [area4, setArea4] = useState();
+  const [area5, setArea5] = useState();
   // Total price
   const ticketsQuantity = cartReg.amount + cartVip.amount;
   const [subtotalPrice, setSubtotalPrice] = useState();
@@ -62,6 +62,21 @@ function MyApp({ Component, pageProps }) {
       setTickets(tickets);
     }
     getData();
+  }, []);
+
+  // Fetching areas from Available Spots
+  useEffect(() => {
+    async function getAreas() {
+      const res = await fetch("https://bitter-moon-5524.fly.dev/available-spots");
+      //const res = await fetch("http://localhost:8080/available-spots");
+      const areas = await res.json();
+      setArea1(areas[1].available);
+      setArea2(areas[2].available);
+      setArea3(areas[3].available);
+      setArea4(areas[4].available);
+      setArea5(areas[5].available);
+    }
+    getAreas();
   }, []);
 
   // Check if green is true and set State
@@ -158,7 +173,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Context.Provider value={{ state, setState }}>
       <Layout
-        areas={props.areas}
+        areas={pageProps.areas}
         cartReg={cartReg}
         regName={regName}
         regPrice={regPrice}

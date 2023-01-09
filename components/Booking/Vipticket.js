@@ -1,26 +1,35 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
+import { useContext } from "react";
+import Context from "../Context";
 
 export default function Viptickets(props) {
-  const [totalVip, setTotalVip] = useState();
+  const context = useContext(Context);
+  const [totalVipp, setTotalVipp] = useState();
 
-  // Sending 2 parameters to addVipToCart
+  // Define totalReg when onClick in Choose amount
   function setQuantities() {
-    props.addVipToCart(props.cartVip, totalVip);
-    // Callback the function that defines the atribute max according to the quantity of tickets.
+    context.setTotalVip(totalVipp);
+    console.log(context.totalVip);
+    // Callback function in tTickets.js
     props.tentsForTickets();
+    const amount = context.totalVip;
+    if (context.cartVip.amount === 0) {
+      context.setCartVip({ ...context.cartVip, amount: amount });
+    }
   }
 
-  function displayQuantityTicketsVip() {
+  // Define totalReg when onClick in Input field
+  function displayQuantityTicketsVip(e) {
+    context.setTotalVip(parseInt(e.target.value, 10));
     const quantity = document.querySelector(".vip-quantity");
     const tickets = document.querySelector("#ticket-vip-quantity");
     quantity.textContent = tickets.value + "x";
-    // console.log(tickets.value);
-    // Calculating the total
     const total = tickets.value * 1299;
     document.querySelector(".totalTicketsVip").textContent = "DKK " + total;
-    setTotalVip(parseInt(tickets.value, 10));
-    return totalVip;
+    setTotalVipp(parseInt(tickets.value, 10));
+    console.log(tickets.value);
   }
+
   function openVip() {
     const vip = document.querySelector(".open-ticket-vip");
     if ((vip.style.display = "none")) {
@@ -56,7 +65,7 @@ export default function Viptickets(props) {
         <div className="flex-row-space-around quantity-container">
           <form className="flex-row-space-around">
             <label htmlFor="ticket-vip-quantity"></label>
-            <input id="ticket-vip-quantity" type="number" name="tickets-quantity" min="0" max="9" placeholder="0" className="input-number-tickets" onChange={displayQuantityTicketsVip}></input>
+            <input id="ticket-vip-quantity" type="number" name="tickets-quantity" min="0" max="9" placeholder="0" className="input-number-tickets" onClick={displayQuantityTicketsVip}></input>
           </form>
           <div className="flex-row-space-around">
             <h3 className="vip-quantity">0X</h3>

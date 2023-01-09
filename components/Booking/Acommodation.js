@@ -1,26 +1,19 @@
-import React, { useRef, useState } from "react";
-// import Basket from "../../components/Booking/Basket";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import ModalAcommodation from "../../components/elements/ModalAcommodation";
-import { useEffect } from "react";
+import Context from "../Context";
 
 export default function Acommodation(props) {
-  // First define the state
-  // console.log(response);
-  // // We do something with the response returned from insertOrder().
-  // if (response && response.length) {
-  //   // If response is not null AND has a length asumme that is an array (How??)
-  //   setPaymentCompleted(true);
-  //   // 14. Now we have a variable that we can use in our UI.
+  const cartReg = useContext(Context);
+  const cartVip = useContext(Context);
+
   function newFunction(e) {
     const spot = e.target.value;
     props.defineAcommodation(spot);
-    // console.log(spot);
   }
-  const reserveSpot = useRef();
 
-  const ticketsQuantity = props.cartReg.amount + props.cartVip.amount;
+  const reserveSpot = useRef();
+  const ticketsQuantity = cartReg.amount + cartVip.amount;
   const spotReserved = props.spot;
-  // console.log(spotReserved);
 
   // Then update / add it to the cart
   function reserveTicket(payload) {

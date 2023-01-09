@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useState, useRef } from "react";
 import Owner from "./Owner";
+import Context from "../Context";
 // import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from "react-accessible-accordion";
 // import "react-accessible-accordion/dist/fancy-example.css";
 
@@ -9,22 +10,28 @@ export default function Personal(props) {
   const [showFormVip, setShowFormVip] = useState(false);
   const [showRegFormTitle, setShowRegFormTitle] = useState(false);
   const [showVipFormTitle, setShowVipFormTitle] = useState(false);
+  // Using context
+  const cartReg = useContext(Context);
+  const cartVip = useContext(Context);
+  const totalReg = useContext(Context);
+  const totalVip = useContext(Context);
+
   function displayRegInfo() {
     let personalInfosReg = [];
-    for (let i = 0; i < props.cartReg.amount; i++) {
+    for (let i = 0; i < cartReg.amount; i++) {
       personalInfosReg.push(
         <Owner
           areas={props.areas}
-          cartReg={props.cartReg}
-          cartVip={props.cartVip}
-          addRegToCart={props.addRegToCart}
-          addVipToCart={props.addVipToCart}
+          // cartReg={props.cartReg}
+          // cartVip={props.cartVip}
+          // addRegToCart={props.addRegToCart}
+          // addVipToCart={props.addVipToCart}
           ticketsQuantity={props.ticketsQuantity}
           spot={props.spot}
           totalPrice={props.totalPrice}
           subtotalPrice={props.subtotalPrice}
-          totalReg={props.totalReg}
-          totalVip={props.totalVip}
+          // totalReg={props.totalReg}
+          // totalVip={props.totalVip}
           chosenArea={props.chosenArea}
           index={i}
           key={i}
@@ -39,10 +46,10 @@ export default function Personal(props) {
       personalInfosVip.push(
         <Owner
           areas={props.areas}
-          cartReg={props.cartReg}
-          cartVip={props.cartVip}
-          addRegToCart={props.addRegToCart}
-          addVipToCart={props.addVipToCart}
+          // cartReg={props.cartReg}
+          // cartVip={props.cartVip}
+          // addRegToCart={props.addRegToCart}
+          // addVipToCart={props.addVipToCart}
           ticketsQuantity={props.ticketsQuantity}
           spot={props.spot}
           totalPrice={props.totalPrice}
@@ -107,7 +114,7 @@ export default function Personal(props) {
           <div className="owners-container">
             <div className="personal-form">
               <div className="regular-container small">
-                {!showFormReg && props.cartReg.amount > 0 && (
+                {!showFormReg && cartReg.amount > 0 && (
                   <button onClick={() => setShowFormReg(true)} className="btn-main">
                     Regular pass(es)
                   </button>
@@ -122,7 +129,7 @@ export default function Personal(props) {
                 )}
               </div>
               <div className="vip-container small">
-                {!showFormVip && props.cartVip.amount > 0 && (
+                {!showFormVip && cartVip.amount > 0 && (
                   <button onClick={() => setShowFormVip(true)} className="btn-main">
                     VIP pass(es)
                   </button>

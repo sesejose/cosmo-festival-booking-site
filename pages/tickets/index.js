@@ -1,7 +1,8 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import Pages from "../../components/Booking/Pages";
 import Basket from "../../components/Booking/Basket";
+import Context from "../../components/Context";
 import Ticket from "../../components/Booking/Ticket";
 import Acommodation from "../../components/Booking/Acommodation";
 import Personal from "../../components/Booking/Personal";
@@ -10,19 +11,15 @@ import Thanks from "../../components/Booking/Thanks";
 import { sendEtagResponse } from "next/dist/server/send-payload";
 
 export default function TicketsPage(props) {
-  //Tickets
-  const [cartReg, setCartReg] = useState([]);
-  const [cartVip, setCartVip] = useState([]);
-  const [tickets, setTickets] = useState([]);
-  const [totalReg, setTotalReg] = useState(0);
-  const [totalVip, setTotalVip] = useState(0);
+  // Tickets and carts
+  const context = useContext(Context);
+
   // Green
   const [green, setGreen] = useState();
   const [greenPrice, setGreenPrice] = useState();
-  const [availables, setAvailables] = useState([]);
   // Tents
-  const [totalTent2, setTotalTent2] = useState();
-  const [totalTent3, setTotalTent3] = useState();
+  // const [totalTent2, setTotalTent2] = useState();
+  // const [totalTent3, setTotalTent3] = useState();
   const [tent2Price, setTent2Price] = useState();
   const [tent3Price, setTent3Price] = useState();
   // Accommodation
@@ -38,36 +35,14 @@ export default function TicketsPage(props) {
   const area4 = props.areas[3].available;
   const area5 = props.areas[4].available;
   // Total price
-  const ticketsQuantity = cartReg.amount + cartVip.amount;
-  const [subtotalPrice, setSubtotalPrice] = useState();
-  const [totalPrice, setTotalPrice] = useState();
-  // Fetching tickets from Supabase (Tickets table)
-  useEffect(() => {
-    async function getData() {
-      const url = "https://udfchraccrfladlsvbzh.supabase.co/rest/v1/tickets";
-      const headers = {
-        "Content-Type": "application/jsonS",
-        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkZmNocmFjY3JmbGFkbHN2YnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA4NzQzODEsImV4cCI6MTk4NjQ1MDM4MX0.0eTW-TRibvc-FFW6XlCaTEfX52g-3SsrjMh3t7XXvIw",
-        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVkZmNocmFjY3JmbGFkbHN2YnpoIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzA4NzQzODEsImV4cCI6MTk4NjQ1MDM4MX0.0eTW-TRibvc-FFW6XlCaTEfX52g-3SsrjMh3t7XXvIw",
-        Prefer: "return-representation",
-      };
-      const options = {
-        method: "GET",
-        headers: headers,
-      };
-      const body = {
-        body: "false",
-      };
-      // Await then execute the code.
-      const res = await fetch(url, options, body); // Fetchs the data (await)
-      const tickets = await res.json(); //When it's done getting it
-      // return data; // This returned tickets in an array - square brackets to define each one.
-      setCartReg(tickets[0]);
-      setCartVip(tickets[1]);
-      setTickets(tickets);
-    }
-    getData();
-  }, []);
+  // const [subtotalPrice, setSubtotalPrice] = useState();
+  // const [totalPrice, setTotalPrice] = useState();
+  const ticketsQuantity = context.cartReg.amount + context.cartVip.amount;
+  // Camping price
+  const [reserveID, setReserveID] = useState({});
+  const fixedCampingPrice = 99;
+
+  // Basket Total Price
 
   // Check if green is true and set State
   function updateGreen(value) {
@@ -82,34 +57,11 @@ export default function TicketsPage(props) {
   }
 
   // Getting tents from Tickets.js to then pass to the Basket.js
-  function getTents(totalTent2, totalTent3) {
-    // console.log(totalTent2);
-    setTotalTent2(totalTent2);
-    // console.log(totalTent3);
-    setTotalTent3(totalTent3);
-    // Set tent 2 price
-    setTent2Price(totalTent2 * 299);
-    setTent3Price(totalTent3 * 399);
-    // console.log(tent2Price);
-    // console.log(tent3Price);
-  }
-
-  // 2 Parameters come from the callback function in RegTicket component
-  function addRegToCart(cartReg, totalReg) {
-    setTotalReg(totalReg);
-    const amount = totalReg;
-    if (cartReg.amount === 0) {
-      setCartReg({ ...cartReg, amount: amount });
-    }
-  }
-
-  // 2 Parameters come from the callback function in VipTicket component
-  function addVipToCart(cartVip, totalVip) {
-    setTotalVip(totalVip);
-    const amount = totalVip;
-    if (cartVip.amount === 0) {
-      setCartVip({ ...cartVip, amount: amount });
-    }
+  function getTents() {
+    // setTotalTent2(totalTent2);
+    // setTotalTent3(totalTent3);
+    setTent2Price(context.totalTent2 * 299);
+    setTent3Price(context.totalTent3 * 399);
   }
 
   // Checking the availability and Total Price
@@ -139,11 +91,14 @@ export default function TicketsPage(props) {
       alfheim.disabled = { status5 };
       setStatus5(true);
     }
-    // setting subtotal price state
-    setSubtotalPrice(totalVip * cartVip.price + totalReg * cartReg.price);
-    // Setting total Price State
-    setTotalPrice(totalVip * cartVip.price + totalReg * cartReg.price + fixedCampingPrice + greenPrice + tent2Price + tent3Price);
   }
+
+  // function totalPriceBasket() {
+  //   // setting subtotal price state
+  //   setSubtotalPrice(context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price);
+  //   // Setting total Price State
+  //   setTotalPrice(context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price + fixedCampingPrice + greenPrice + tent2Price + tent3Price);
+  // }
 
   // Define the accommodation
   function defineAcommodation(spot) {
@@ -151,41 +106,20 @@ export default function TicketsPage(props) {
     // console.log(spot);
   }
 
-  const regName = cartReg.displayname;
-  const regAmount = cartReg.amount;
-  const regPrice = cartReg.price;
-  const vipName = cartVip.displayname;
-  const vipAmount = cartVip.amount;
-  const vipPrice = cartVip.price;
-  const [reserveID, setReserveID] = useState({});
-  const fixedCampingPrice = 99;
-
   return (
     <>
       <Pages
         areas={props.areas}
-        cartReg={cartReg}
-        regName={regName}
-        regPrice={regPrice}
-        regAmount={regAmount}
-        cartVip={cartVip}
-        vipName={vipName}
-        vipPrice={vipPrice}
-        vipAmount={vipAmount}
-        addRegToCart={addRegToCart}
-        addVipToCart={addVipToCart}
         spot={spot}
-        subtotalPrice={subtotalPrice}
-        totalReg={totalReg}
-        totalVip={totalVip}
-        totalPrice={totalPrice}
+        // subtotalPrice={subtotalPrice}
+        // totalPrice={totalPrice}
         fixedCampingPrice={fixedCampingPrice}
         greenPrice={greenPrice}
         green={green}
         updateGreen={updateGreen}
         getTents={getTents}
-        totalTent2={totalTent2}
-        totalTent3={totalTent3}
+        // totalTent2={totalTent2}
+        // totalTent3={totalTent3}
         tent2Price={tent2Price}
         tent3Price={tent3Price}
         checkAvailability={checkAvailability}
@@ -194,26 +128,14 @@ export default function TicketsPage(props) {
 
       <Basket
         areas={props.areas}
-        cartReg={cartReg}
-        regName={regName}
-        regPrice={regPrice}
-        regAmount={regAmount}
-        vipName={vipName}
-        vipPrice={vipPrice}
-        vipAmount={vipAmount}
-        cartVip={cartVip}
-        addRegToCart={addRegToCart}
-        addVipToCart={addVipToCart}
         spot={spot}
-        subtotalPrice={subtotalPrice}
-        totalReg={totalReg}
-        totalVip={totalVip}
-        totalPrice={totalPrice}
+        // subtotalPrice={subtotalPrice}
+        // totalPrice={totalPrice}
         fixedCampingPrice={fixedCampingPrice}
         greenPrice={greenPrice}
         green={green}
-        totalTent2={totalTent2}
-        totalTent3={totalTent3}
+        // totalTent2={totalTent2}
+        // totalTent3={totalTent3}
         tent2Price={tent2Price}
         tent3Price={tent3Price}
       />

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Regtickets from "./Regticket";
 import Viptickets from "./Vipticket";
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import Context from "../Context";
 
 export default function Tickets(props) {
   // ********** Getting the quantity of tents from the forms *********** //
-
-  const [totalTent2, setTotalTent2] = useState();
-  const [totalTent3, setTotalTent3] = useState();
+  const context = useContext(Context);
+  const [total2, setTotal2] = useState();
+  const [total3, setTotal3] = useState();
 
   function check() {
     const tents = document.getElementById("tents-container");
@@ -25,7 +26,16 @@ export default function Tickets(props) {
     }
   }
 
-  function displayQuantityTent2() {
+  // Define totalReg when onClick in Choose amount
+  function setTentsQuantities() {
+    context.setTotalTent2(total2);
+    console.log(context.totalTent2);
+    context.setTotalTent3(total3);
+    console.log(context.totalTent3);
+  }
+
+  function displayQuantityTent2(e) {
+    context.setTotalTent2(parseInt(e.target.value, 10));
     const quantity = document.querySelector(".tent2");
     const tents = document.querySelector("#tent2-quantity");
     quantity.textContent = tents.value + "x";
@@ -34,11 +44,12 @@ export default function Tickets(props) {
     const total = tents.value * 299;
     document.querySelector(".totalTent2").textContent = "DKK " + total;
     // document.querySelector(".totalTent2").classList.add("turquoise");
-    setTotalTent2(parseInt(tents.value, 10));
-    return totalTent2;
+    setTotal2(parseInt(tents.value, 10));
+    props.getTents();
   }
 
-  function displayQuantityTent3() {
+  function displayQuantityTent3(e) {
+    context.setTotalTent3(parseInt(e.target.value, 10));
     const quantity = document.querySelector(".tent3");
     const tents = document.querySelector("#tent3-quantity");
     quantity.textContent = tents.value + "x";
@@ -47,13 +58,13 @@ export default function Tickets(props) {
     const total = tents.value * 399;
     document.querySelector(".totalTent3").textContent = "DKK " + total;
     // document.querySelector(".totalTent3").classList.add("turquoise");
-    setTotalTent3(parseInt(tents.value, 10));
-    return totalTent3;
+    setTotal3(parseInt(tents.value, 10));
+    props.getTents();
   }
 
   sendTentsBack();
   function sendTentsBack() {
-    props.getTents(totalTent2, totalTent3);
+    // props.getTents(totalTent2, totalTent3);
     // console.log(totalTent2);
     // console.log(totalTent3);
   }
@@ -62,7 +73,7 @@ export default function Tickets(props) {
 
   const [maxReg, setMaxReg] = useState(undefined);
   const [maxVip, setMaxVip] = useState(undefined);
-  const ticketsQuantity = props.totalReg + props.totalVip;
+  const ticketsQuantity = context.totalReg + context.totalVip;
   // console.log(ticketsQuantity);
 
   function tentsForTickets() {
@@ -112,17 +123,17 @@ export default function Tickets(props) {
           </div>
           <div className="tickets-container">
             <Regtickets
-              key={props.cartReg.id}
-              cartReg={props.cartReg}
+              // key={props.cartReg.id}
+              // cartReg={props.cartReg}
               // regTicketsQuantityCount={props.regTicketsQuantityCount}
-              addRegToCart={props.addRegToCart}
+              // addRegToCart={props.addRegToCart}
               tentsForTickets={tentsForTickets}
             />
             <Viptickets
-              key={props.cartVip.id}
-              cartVip={props.cartVip}
+              // key={props.cartVip.id}
+              // cartVip={props.cartVip}
               // vipTicketsQuantityCount={props.vipTicketsQuantityCount}
-              addVipToCart={props.addVipToCart}
+              // addVipToCart={props.addVipToCart}
               tentsForTickets={tentsForTickets}
             />
           </div>
@@ -177,11 +188,13 @@ export default function Tickets(props) {
                 </div>
               </form>
             </div>
+            <button className="btn-main" onClick={setTentsQuantities}>
+              Choose Tents
+            </button>
             <button
               className="btn-main"
               onClick={() => {
                 props.checkAvailability();
-                // step2();
               }}
             >
               Add to cart

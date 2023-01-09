@@ -1,26 +1,35 @@
-import { useState } from "react";
+import { useState, createContext } from "react";
+import { useContext } from "react";
+import Context from "../Context";
 
 export default function Regtickets(props) {
-  const [totalReg, setTotalReg] = useState();
+  const context = useContext(Context);
+  const [totalRegular, setTotalRegular] = useState();
 
-  // Sending 2 parameters to addRegToCart
+  // Define totalReg when onClick in Choose amount
   function setQuantities() {
-    props.addRegToCart(props.cartReg, totalReg);
-    // Callback the function that defines the atribute max according to the quantity of tickets.
+    context.setTotalReg(totalRegular);
+    console.log(context.totalReg);
+    // Callback function in tTickets.js
     props.tentsForTickets();
+    const amount = context.totalReg;
+    if (context.cartReg.amount === 0) {
+      context.setCartReg({ ...context.cartReg, amount: amount });
+    }
   }
 
-  function displayQuantityTicketsRegular() {
+  // Define totalReg when onClick in Input field
+  function displayQuantityTicketsRegular(e) {
+    context.setTotalReg(parseInt(e.target.value, 10));
     const quantity = document.querySelector(".regular-quantity");
     const tickets = document.querySelector("#ticket-regular-quantity");
     quantity.textContent = tickets.value + "x";
-    // console.log(tickets.value);
-    // Calculating the total
     const total = tickets.value * 799;
     document.querySelector(".totalTicketsRegular").textContent = "DKK " + total;
-    setTotalReg(parseInt(tickets.value, 10));
-    return totalReg;
+    setTotalRegular(parseInt(tickets.value, 10));
+    console.log(tickets.value);
   }
+
   function openRegular() {
     const regular = document.querySelector(".open-ticket-regular");
     if ((regular.style.display = "none")) {
@@ -56,7 +65,7 @@ export default function Regtickets(props) {
         <div className="flex-row-space-around quantity-container">
           <form className="flex-row-space-around">
             <label htmlFor="ticket-regular-quantity"></label>
-            <input id="ticket-regular-quantity" type="number" name="tickets-quantity" min="0" max="9" placeholder="0" className="input-number-tickets" onChange={displayQuantityTicketsRegular}></input>
+            <input id="ticket-regular-quantity" type="number" name="tickets-quantity" min="0" max="9" placeholder="0" className="input-number-tickets" onClick={displayQuantityTicketsRegular}></input>
           </form>
           <div className="flex-row-space-around">
             <h3 className="regular-quantity">0X</h3>

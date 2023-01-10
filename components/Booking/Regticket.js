@@ -77,7 +77,7 @@ export default function Regtickets(props) {
           </div>
         </div>
         <button value="Add to cart" onClick={setQuantities} className="btn-add">
-          Choose amount
+          Add to cart
         </button>
       </div>
     </>

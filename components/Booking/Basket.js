@@ -107,14 +107,14 @@ export default function Basket(props) {
           <div className="posts">
             <div className="post-text-container">
               <h3 className="turquoise">Acommodation</h3>
-              <h4 className="white">{props.spot}</h4>
+              <h4 className="white">{context.spot}</h4>
             </div>
           </div>
           <hr></hr>
           <div className="posts">
             <div className="post-text-container">
               <h3 className="turquoise">Green camping spot</h3>
-              <h4 className="white">{props.green}</h4>
+              <h4 className="white">{context.green}</h4>
             </div>
           </div>
           <hr></hr>
@@ -146,15 +146,15 @@ export default function Basket(props) {
             </div>
             <div className="flex-row-space-around">
               <p className="white">Fixed camping fee</p>
-              <p className="white">DKK {props.fixedCampingPrice}</p>
+              <p className="white">DKK {context.fixedCampingPrice}</p>
             </div>
             <div className="flex-row-space-around">
               <p className="white">Green Camping</p>
-              <p className="white">DKK {props.greenPrice}</p>
+              <p className="white">DKK {context.greenPrice}</p>
             </div>
             <div className="flex-row-space-around">
               <h3 className="white">Total</h3>
-              <h3 className="white">DKK {context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price + props.fixedCampingPrice + props.greenPrice + props.tent2Price + props.tent3Price}</h3>
+              <h3 className="white">DKK {context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price + context.fixedCampingPrice + context.greenPrice + context.tent2Price + context.tent3Price}</h3>
             </div>
           </div>
           <button className="basket-display-pay btn-main">PAY</button>

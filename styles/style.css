@@ -891,7 +891,7 @@ footer svg {
 }
 .container-page {
   /* grid-column: 1/2; */
-  min-width: 1024px;
+  min-width: 75vw;
   width: 100%;
   margin-top: 6.5rem;
   /* height: 100vh; */
@@ -917,8 +917,11 @@ footer svg {
 .basket-container {
   /* border-left: 1px solid var(--pink); */
   /* height: 100vh; */
-  padding: var(--p-large);
+  /* padding: var(--p-large); */
+  padding: var(--ptb-large);
   overflow: scroll;
+  margin: var(--m-auto);
+  width: 80%;
 }
 
 .sub-total-container {

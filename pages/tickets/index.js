@@ -1,58 +1,37 @@
 import React from "react";
 import { useState, useEffect, useRef, useContext } from "react";
-import Pages from "../../components/Booking/Pages";
-import Basket from "../../components/Booking/Basket";
 import Context from "../../components/Context";
-import Ticket from "../../components/Booking/Ticket";
-import Acommodation from "../../components/Booking/Acommodation";
-import Personal from "../../components/Booking/Personal";
-import Payment from "../../components/Booking/Payment";
-import Thanks from "../../components/Booking/Thanks";
+import Regtickets from "../../components/Booking/Regticket";
+import Viptickets from "../../components/Booking/Vipticket";
+import Basket from "../../components/Booking/Basket";
+import Link from "next/link";
 import { sendEtagResponse } from "next/dist/server/send-payload";
+import Anchor from "../../components/Anchor";
 
 export default function TicketsPage(props) {
-  // Tickets and carts
   const context = useContext(Context);
 
-  // Green
-  const [green, setGreen] = useState();
-  const [greenPrice, setGreenPrice] = useState();
-  // Tents
-  // const [totalTent2, setTotalTent2] = useState();
-  // const [totalTent3, setTotalTent3] = useState();
-  const [tent2Price, setTent2Price] = useState();
-  const [tent3Price, setTent3Price] = useState();
-  // Accommodation
-  const [spot, setAcommodation] = useState();
-  const [status1, setStatus1] = useState(false);
-  const [status2, setStatus2] = useState(false);
-  const [status3, setStatus3] = useState(false);
-  const [status4, setStatus4] = useState(false);
-  const [status5, setStatus5] = useState(false);
-  const area1 = props.areas[0].available;
-  const area2 = props.areas[1].available;
-  const area3 = props.areas[2].available;
-  const area4 = props.areas[3].available;
-  const area5 = props.areas[4].available;
-  // Total price
-  // const [subtotalPrice, setSubtotalPrice] = useState();
-  // const [totalPrice, setTotalPrice] = useState();
-  const ticketsQuantity = context.cartReg.amount + context.cartVip.amount;
-  // Camping price
-  const [reserveID, setReserveID] = useState({});
-  const fixedCampingPrice = 99;
-
-  // Basket Total Price
+  function greenCamping() {
+    // function to add the green camping price to total price
+    const greenCheck = document.querySelector("#check-green-camping");
+    if (greenCheck.checked == true) {
+      const greenYes = (greenCheck.value = "Yes");
+      updateGreen(greenYes);
+    } else {
+      const greenNo = (greenCheck.value = "No");
+      updateGreen(greenNo);
+    }
+  }
 
   // Check if green is true and set State
   function updateGreen(value) {
     // console.log(greenCheck);
-    setGreen(value);
+    context.setGreen(value);
     // console.log(value);
     if (value == "Yes") {
-      setGreenPrice(249);
+      context.setGreenPrice(249);
     } else {
-      setGreenPrice(0);
+      context.setGreenPrice(0);
     }
   }
 
@@ -60,105 +39,229 @@ export default function TicketsPage(props) {
   function getTents() {
     // setTotalTent2(totalTent2);
     // setTotalTent3(totalTent3);
-    setTent2Price(context.totalTent2 * 299);
-    setTent3Price(context.totalTent3 * 399);
+    context.setTent2Price(context.totalTent2 * 299);
+    context.setTent3Price(context.totalTent3 * 399);
+  }
+
+  // Define totalReg and totalVip when onClick in Choose amount
+  function setTentsQuantities() {
+    context.setTotalTent2(context.total2);
+    console.log(context.totalTent2);
+    context.setTotalTent3(context.total3);
+    console.log(context.totalTent3);
+    checkAvailability();
+  }
+
+  function displayQuantityTent2(e) {
+    context.setTotalTent2(parseInt(e.target.value, 10));
+    const quantity = document.querySelector(".tent2");
+    const tents = document.querySelector("#tent2-quantity");
+    quantity.textContent = tents.value + "x";
+    // quantity.classList.add("turquoise");
+    // Calculating the total
+    const total = tents.value * 299;
+    document.querySelector(".totalTent2").textContent = "DKK " + total;
+    // document.querySelector(".totalTent2").classList.add("turquoise");
+    context.setTotal2(parseInt(tents.value, 10));
+    getTents();
+  }
+
+  function displayQuantityTent3(e) {
+    context.setTotalTent3(parseInt(e.target.value, 10));
+    const quantity = document.querySelector(".tent3");
+    const tents = document.querySelector("#tent3-quantity");
+    quantity.textContent = tents.value + "x";
+    // quantity.classList.add("turquoise");
+    // Calculating the total
+    const total = tents.value * 399;
+    document.querySelector(".totalTent3").textContent = "DKK " + total;
+    // document.querySelector(".totalTent3").classList.add("turquoise");
+    context.setTotal3(parseInt(tents.value, 10));
+    getTents();
+  }
+
+  // Defining the Atttribute Max for tents
+  const [maxReg, setMaxReg] = useState(undefined);
+  const [maxVip, setMaxVip] = useState(undefined);
+  const ticketsQuantity = context.totalReg + context.totalVip;
+
+  function tentsForTickets() {
+    if (ticketsQuantity >= 0) {
+      setMaxReg(0);
+      setMaxVip(0);
+    }
+    if (ticketsQuantity >= 2) {
+      setMaxReg(1);
+      setMaxVip(1);
+    }
+    if (ticketsQuantity >= 6) {
+      setMaxReg(2);
+      setMaxVip(2);
+    }
+    if (ticketsQuantity >= 11) {
+      setMaxReg(3);
+      setMaxVip(3);
+    }
+    if (ticketsQuantity >= 16) {
+      setMaxReg(4);
+      setMaxVip(4);
+    }
+  }
+
+  // Check Availability
+  function check() {
+    const tents = document.getElementById("tents-container");
+    if (document.getElementById("check-rent-tent").value != "") {
+      document.getElementById("tent2-quantity").disabled = false;
+      document.getElementById("tent3-quantity").disabled = false;
+      tents.style.display = "flex";
+    } else {
+      document.getElementById("tent2-quantity").disabled = true;
+      document.getElementById("tent3-quantity").disabled = true;
+      tents.style.display = "none";
+    }
+    if (document.getElementById("check-rent-tent").checked === false) {
+      tents.style.display = "none";
+    }
   }
 
   // Checking the availability and Total Price
   function checkAvailability() {
-    if (ticketsQuantity > area1) {
+    if (ticketsQuantity > context.area1) {
       const svartheim = document.querySelector("#svartheim");
       svartheim.disabled = { status1 };
-      setStatus1(true);
+      context.setStatus1(true);
     }
-    if (ticketsQuantity > area2) {
+    if (ticketsQuantity > context.area2) {
       const nilfheim = document.querySelector("#nilfheim");
       nilfheim.disabled = { status2 };
-      setStatus2(true);
+      context.setStatus2(true);
     }
-    if (ticketsQuantity > area3) {
+    if (ticketsQuantity > context.area3) {
       const helheim = document.querySelector("#helheim");
       helheim.disabled = { status3 };
-      setStatus3(true);
+      context.setStatus3(true);
     }
-    if (ticketsQuantity > area4) {
+    if (ticketsQuantity > context.area4) {
       const muspelheim = document.querySelector("#muspelheim");
       muspelheim.disabled = { status4 };
-      setStatus4(true);
+      context.setStatus4(true);
     }
-    if (ticketsQuantity > area5) {
+    if (ticketsQuantity > context.area5) {
       const alfheim = document.querySelector("#alfheim");
       alfheim.disabled = { status5 };
-      setStatus5(true);
+      context.setStatus5(true);
     }
-  }
-
-  // function totalPriceBasket() {
-  //   // setting subtotal price state
-  //   setSubtotalPrice(context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price);
-  //   // Setting total Price State
-  //   setTotalPrice(context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price + fixedCampingPrice + greenPrice + tent2Price + tent3Price);
-  // }
-
-  // Define the accommodation
-  function defineAcommodation(spot) {
-    setAcommodation(spot);
-    // console.log(spot);
   }
 
   return (
     <>
-      <Pages
+      {/* <Ticket
         areas={props.areas}
         spot={spot}
-        // subtotalPrice={subtotalPrice}
-        // totalPrice={totalPrice}
         fixedCampingPrice={fixedCampingPrice}
         greenPrice={greenPrice}
         green={green}
         updateGreen={updateGreen}
         getTents={getTents}
-        // totalTent2={totalTent2}
-        // totalTent3={totalTent3}
         tent2Price={tent2Price}
         tent3Price={tent3Price}
         checkAvailability={checkAvailability}
         defineAcommodation={defineAcommodation}
-      ></Pages>
+      ></Ticket> */}
 
-      <Basket
-        areas={props.areas}
-        spot={spot}
-        // subtotalPrice={subtotalPrice}
-        // totalPrice={totalPrice}
-        fixedCampingPrice={fixedCampingPrice}
-        greenPrice={greenPrice}
-        green={green}
-        // totalTent2={totalTent2}
-        // totalTent3={totalTent3}
-        tent2Price={tent2Price}
-        tent3Price={tent3Price}
-      />
+      <section id="tickets">
+        <div className="container-page">
+          <div className="wrapper-forms">
+            <div className="forms-intro-text">
+              <h1 className="turquoise text-center">Tickets</h1>
+              <p className="text-center">Note! The limit per purchase is 9 tickets!</p>
+            </div>
+            <div className="tickets-container">
+              <Regtickets
+                // key={props.cartReg.id}
+                // cartReg={props.cartReg}
+                // regTicketsQuantityCount={props.regTicketsQuantityCount}
+                // addRegToCart={props.addRegToCart}
+                tentsForTickets={tentsForTickets}
+              />
+              <Viptickets
+                // key={props.cartVip.id}
+                // cartVip={props.cartVip}
+                // vipTicketsQuantityCount={props.vipTicketsQuantityCount}
+                // addVipToCart={props.addVipToCart}
+                tentsForTickets={tentsForTickets}
+              />
+            </div>
+            <div></div>
+            <div className="personal-camping-options">
+              <div className="spot-container">
+                <div>
+                  <h3 className="pink"> Fixed booking fee</h3>
+                  <p>This fee is only once per purchase, no matter how many spots you are booking!</p>
+                  <p className="fee-aside">99,- DKK</p>
+                </div>
+              </div>
+              <diV className="personal-green-camping">
+                <input type="checkbox" name="check-green-camping" id="check-green-camping" value="Yes" onClick={greenCamping}></input>
+                <label htmlFor="check-green-camping"></label>
+                <div>
+                  <h3 className="pink">Green Camping</h3>
+                  <p>If being evironmentally conscious is close to your heart choose our green camping offer.</p>
+                  <p className="fee-aside">249,- DKK</p>
+                </div>
+              </diV>
+
+              <div className="personal-rent">
+                <input type="checkbox" name="check-rent-tent" id="check-rent-tent" onClick={check}></input>
+                <label htmlFor="check-rent-tent"></label>
+                <div>
+                  <h3 className="pink">Rent a tent and get it all set up by the staff</h3>
+                </div>
+              </div>
+
+              <div id="tents-container" className="tents-container hidden">
+                <form>
+                  <label htmlFor="tents-quantity"></label>
+                  <h3 className="pink">Tent (2 persons) 299,- DKK</h3>
+                  <div className="flex-row-space-around">
+                    <input type="number" name="tents-quantity" id="tent2-quantity" min="0" max={maxReg} placeholder="0" disabled className="input-number-tents" onChange={displayQuantityTent2}></input>
+                    <h3 className="tent2 turquoise">0x</h3>
+                    <h3 className="white">299,- DKK</h3>
+                    <h3 className="white">Total:</h3>
+                    <h3 className="totalTent2 turquoise">0</h3>
+                  </div>
+                </form>
+                <form>
+                  <label htmlFor="tents-quantity"></label>
+                  <h3 className="pink">Tent (3 persons) 399,- DKK</h3>
+                  <div className="flex-row-space-around">
+                    <input type="number" name="tents-quantity" id="tent3-quantity" min="0" max={maxVip} placeholder="0" disabled className="input-number-tents" onChange={displayQuantityTent3}></input>
+                    <h3 className="tent3 turquoise">0x</h3>
+                    <h3 className="white">399,- DKK</h3>
+                    <h3 className="white">Total:</h3>
+                    <h3 className="totalTent3 turquoise">0</h3>
+                  </div>
+                </form>
+              </div>
+              <button className="btn-main" onClick={setTentsQuantities}>
+                Add tents to cart
+              </button>
+              <Anchor className="" href={"/tickets/accommodation"}>
+                Choose Accommodation
+              </Anchor>
+              {/* <button
+                className="btn-main"
+                onClick={() => {
+                  checkAvailability();
+                }}
+              >
+                Add to cart
+              </button> */}
+            </div>
+          </div>
+        </div>
+      </section>
     </>
   );
-}
-
-// Fetching areas from Available spots
-export async function getStaticProps() {
-  /* This function runs before the component bands is render
-  - fetch the data
-  - wait for that data
-  - once we have the data, it put into the component
-  - so the component can render with that data inside it  */
-  const res = await fetch("https://bitter-moon-5524.fly.dev/available-spots");
-  //const res = await fetch("http://localhost:8080/available-spots");
-  const data = await res.json();
-
-  /* - we return a value for this function 
-- that value is got we have a props property we give the property a value
-- that value is going to be an object 
-- inside the objecint to be an object so we can past all the properties that we need*/
-  return {
-    props: { areas: data },
-  };
 }

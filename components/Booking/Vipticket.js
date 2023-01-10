@@ -77,7 +77,7 @@ export default function Viptickets(props) {
           </div>
         </div>
         <button onClick={setQuantities} className="btn-add">
-          Choose amount
+          Add to cart
         </button>
       </div>
     </>

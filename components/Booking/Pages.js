@@ -14,19 +14,19 @@ function Pages(props) {
     <>
       <section id="pages">
         <div className="container-page">
-          <Ticket areas={props.areas} spot={props.spot} checkAvailability={props.checkAvailability} updateGreen={props.updateGreen} green={props.green} getTents={props.getTents} />
+          <Ticket />
 
           <hr className="divider"></hr>
 
-          <Acommodation areas={props.areas} spot={props.spot} defineAcommodation={props.defineAcommodation} subtotalPrice={props.subtotalPrice} totalPrice={props.totalPrice} setReserveID={props.setReserveID} reserveID={props.reserveID} />
+          <Acommodation />
 
           <hr className="divider"></hr>
 
-          <Personal areas={props.areas} spot={props.spot} subtotalPrice={props.subtotalPrice} totalPrice={props.totalPrice} setReserveID={props.setReserveID} reserveID={props.reserveID} />
+          <Personal />
 
           <hr className="divider"></hr>
 
-          <Payment areas={props.areas} spot={props.spot} checkAvailability={props.checkAvailability} defineAcommodation={props.defineAcommodation} subtotalPrice={props.subtotalPrice} totalPrice={props.totalPrice} />
+          <Payment />
 
           <hr className="divider"></hr>
 

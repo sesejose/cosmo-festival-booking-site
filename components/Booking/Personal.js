@@ -6,33 +6,19 @@ import Context from "../Context";
 // import "react-accessible-accordion/dist/fancy-example.css";
 
 export default function Personal(props) {
+  const context = useContext(Context);
+
   const [showFormReg, setShowFormReg] = useState(false);
   const [showFormVip, setShowFormVip] = useState(false);
   const [showRegFormTitle, setShowRegFormTitle] = useState(false);
   const [showVipFormTitle, setShowVipFormTitle] = useState(false);
-  // Using context
-  const cartReg = useContext(Context);
-  const cartVip = useContext(Context);
-  const totalReg = useContext(Context);
-  const totalVip = useContext(Context);
 
   function displayRegInfo() {
     let personalInfosReg = [];
-    for (let i = 0; i < cartReg.amount; i++) {
+    for (let i = 0; i < context.cartReg.amount; i++) {
       personalInfosReg.push(
         <Owner
-          areas={props.areas}
-          // cartReg={props.cartReg}
-          // cartVip={props.cartVip}
-          // addRegToCart={props.addRegToCart}
-          // addVipToCart={props.addVipToCart}
-          ticketsQuantity={props.ticketsQuantity}
-          spot={props.spot}
-          totalPrice={props.totalPrice}
-          subtotalPrice={props.subtotalPrice}
-          // totalReg={props.totalReg}
-          // totalVip={props.totalVip}
-          chosenArea={props.chosenArea}
+          // chosenArea={props.chosenArea}
           index={i}
           key={i}
         />
@@ -42,21 +28,10 @@ export default function Personal(props) {
   }
   function displayVipInfo() {
     let personalInfosVip = [];
-    for (let i = 0; i < props.cartVip.amount; i++) {
+    for (let i = 0; i < context.cartVip.amount; i++) {
       personalInfosVip.push(
         <Owner
-          areas={props.areas}
-          // cartReg={props.cartReg}
-          // cartVip={props.cartVip}
-          // addRegToCart={props.addRegToCart}
-          // addVipToCart={props.addVipToCart}
-          ticketsQuantity={props.ticketsQuantity}
-          spot={props.spot}
-          totalPrice={props.totalPrice}
-          subtotalPrice={props.subtotalPrice}
-          totalReg={props.totalReg}
-          totalVip={props.totalVip}
-          chosenArea={props.chosenArea}
+          // chosenArea={props.chosenArea}
           index={i}
           key={i}
         />
@@ -73,10 +48,10 @@ export default function Personal(props) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: props.reserveID,
+        id: context.reserveID,
       }),
     });
-    console.log(props.reserveID.id);
+    console.log(context.reserveID.id);
     return await res.json();
   }
   async function submit(e) {
@@ -105,43 +80,45 @@ export default function Personal(props) {
   return (
     <>
       <section id="personal">
-        <div className="wrapper-forms">
-          <div className="forms-intro-text">
-            <h1 className="turquoise text-center">Personal information</h1>
-            <p className="text-center">Enter your personal information</p>
-            <p className="text-center">Note! The information provided is how we can identify you as ticket owner so make sure it is the same as on your ID!</p>
-          </div>
-          <div className="owners-container">
-            <div className="personal-form">
-              <div className="regular-container small">
-                {!showFormReg && cartReg.amount > 0 && (
-                  <button onClick={() => setShowFormReg(true)} className="btn-main">
-                    Regular pass(es)
-                  </button>
-                )}
-                {showFormReg && (
-                  <form ref={fullfillres} onSubmit={submit} className="personal-form-reg">
-                    {displayRegInfo()}{" "}
-                    <button className="btn-main" type="submit">
-                      Submit
+        <div className="container-page">
+          <div className="wrapper-forms">
+            <div className="forms-intro-text">
+              <h1 className="turquoise text-center">Personal information</h1>
+              <p className="text-center">Enter your personal information</p>
+              <p className="text-center">Note! The information provided is how we can identify you as ticket owner so make sure it is the same as on your ID!</p>
+            </div>
+            <div className="owners-container">
+              <div className="personal-form">
+                <div className="regular-container small">
+                  {!showFormReg && context.cartReg.amount > 0 && (
+                    <button onClick={() => setShowFormReg(true)} className="btn-main">
+                      Regular pass(es)
                     </button>
-                  </form>
-                )}
-              </div>
-              <div className="vip-container small">
-                {!showFormVip && cartVip.amount > 0 && (
-                  <button onClick={() => setShowFormVip(true)} className="btn-main">
-                    VIP pass(es)
-                  </button>
-                )}
-                {showFormVip && (
-                  <form ref={fullfillres} onSubmit={submit} className="personal-form-vip">
-                    {displayVipInfo()}
-                    <button className="btn-main" type="submit">
-                      Submit
+                  )}
+                  {showFormReg && (
+                    <form ref={fullfillres} onSubmit={submit} className="personal-form-reg">
+                      {displayRegInfo()}{" "}
+                      <button className="btn-main" type="submit">
+                        Submit
+                      </button>
+                    </form>
+                  )}
+                </div>
+                <div className="vip-container small">
+                  {!showFormVip && context.cartVip.amount > 0 && (
+                    <button onClick={() => setShowFormVip(true)} className="btn-main">
+                      VIP pass(es)
                     </button>
-                  </form>
-                )}
+                  )}
+                  {showFormVip && (
+                    <form ref={fullfillres} onSubmit={submit} className="personal-form-vip">
+                      {displayVipInfo()}
+                      <button className="btn-main" type="submit">
+                        Submit
+                      </button>
+                    </form>
+                  )}
+                </div>
               </div>
             </div>
           </div>

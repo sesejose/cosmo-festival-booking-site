@@ -1,4 +1,5 @@
 import React from "react";
+// import Basket from "../../components/Booking/Basket";
 
 function thanks() {
   return (
@@ -84,6 +85,7 @@ function thanks() {
           </div>
         </div>
       </section>
+      {/* <Basket></Basket> */}
     </>
   );
 }

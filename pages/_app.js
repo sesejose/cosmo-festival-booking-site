@@ -40,12 +40,6 @@ function MyApp({ Component, pageProps }) {
   const [reserveID, setReserveID] = useState({});
   const [fixedCampingPrice, setFixedCampingPrice] = useState(99);
 
-  // Define the Accommodation Spot
-  function defineAcommodation(spot) {
-    setSpot(spot);
-    // console.log(spot);
-  }
-
   // Fetching tickets from Supabase (Tickets table)
   useEffect(() => {
     async function getData() {
@@ -74,7 +68,7 @@ function MyApp({ Component, pageProps }) {
     getData();
   }, []);
 
-  // Fetching areas from Available spots
+  // Fetching AREAS from Available spots
   // Next.js will pre-render this page
   useEffect(() => {
     async function getAreas() {
@@ -134,6 +128,10 @@ function MyApp({ Component, pageProps }) {
         area3,
         area4,
         area5,
+        spot,
+        setSpot,
+        reserveID,
+        setReserveID,
       }}
     >
       <Layout>

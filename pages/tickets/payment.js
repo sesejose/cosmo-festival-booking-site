@@ -3,14 +3,15 @@ import { useState } from "react";
 import { useRef } from "react";
 import { insertOrder } from "../../components/Booking/Db";
 import Thanks from "./Thanks";
+import Context from "../../components/Context";
+import { useContext } from "react";
 // import Basket from "../../components/Booking/Basket";
 
 export default function Payment(props) {
+  const context = useContext(Context);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   // const [ages, setAges] = useState();
   /* Here the POST with the object as example from Insomnia
-
-The form should be the same.
 
 {
   "id": 4,
@@ -30,16 +31,16 @@ The form should be the same.
   }
 
 */
-  console.log(props.reserveID);
+  console.log(context.reserveID);
 
   const postOrder = useRef(null);
   async function submit(e) {
     e.preventDefault();
     const response = await insertOrder({
-      id: props.reserveID,
-      reg_tickets: props.cartReg.amount, // This is the totalReg
-      vip_tickets: props.cartReg.amount, // This i sthe totalVip
-      accommodation: props.spot, // This is the props.spot
+      id: context.reserveID,
+      reg_tickets: context.cartReg.amount, // This is the totalReg
+      vip_tickets: context.cartReg.amount, // This i sthe totalVip
+      accommodation: context.spot, // This is the props.spot
       green: true, // this is a new State
       spot: true, // This is a new state
       tent_2: 0, // This is a new State (number)

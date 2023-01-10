@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
-import ModalAcommodation from "../../components/elements/ModalAcommodation";
-import Context from "../../components/Context";
+import ModalAcommodation from "../elements/ModalAcommodation";
+import Context from "../Context";
 
 export default function Accommodation(props) {
   const context = useContext(Context);

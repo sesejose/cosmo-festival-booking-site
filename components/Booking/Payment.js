@@ -3,14 +3,15 @@ import { useState } from "react";
 import { useRef } from "react";
 import { insertOrder } from "./Db";
 import Thanks from "./Thanks";
+import Context from "../Context";
+import { useContext } from "react";
 // import Basket from "../../components/Booking/Basket";
 
 export default function Payment(props) {
+  const context = useContext(Context);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
   // const [ages, setAges] = useState();
   /* Here the POST with the object as example from Insomnia
-
-The form should be the same.
 
 {
   "id": 4,
@@ -30,16 +31,16 @@ The form should be the same.
   }
 
 */
-  console.log(props.reserveID);
+  console.log(context.reserveID);
 
   const postOrder = useRef(null);
   async function submit(e) {
     e.preventDefault();
     const response = await insertOrder({
-      id: props.reserveID,
-      reg_tickets: props.cartReg.amount, // This is the totalReg
-      vip_tickets: props.cartReg.amount, // This i sthe totalVip
-      accommodation: props.spot, // This is the props.spot
+      id: context.reserveID,
+      reg_tickets: context.cartReg.amount, // This is the totalReg
+      vip_tickets: context.cartReg.amount, // This i sthe totalVip
+      accommodation: context.spot, // This is the props.spot
       green: true, // this is a new State
       spot: true, // This is a new state
       tent_2: 0, // This is a new State (number)
@@ -63,60 +64,62 @@ The form should be the same.
       <Thanks />;
       ) : ( */}
       <section id="payment">
-        <form ref={postOrder} onSubmit={submit}>
-          <div className="wrapper-forms">
-            <div className="forms-intro-text">
-              <h1 className="turquoise text-center">Pay with Credit Card</h1>
-              <p className="text-center">Set you credit card</p>
-            </div>
-            <div className="credit-card-container">
-              <div className="form-group">
-                <div className="field-group">
-                  <div className="field">
-                    <label htmlFor="card">Credit card</label>
-                    <select name="cards" id="cards" placeholder="VISA / DANKORT" className="input-text" required>
-                      <option value="volvo">VISA / DANKORT</option>
-                      <option value="saab">MASTERCARD</option>
-                      <option value="fiat">AMERICAN EXPRESS</option>
-                      <option value="audi">OTHER</option>
-                    </select>
-
-                    <span className="error-message">Enter a valid value</span>
-                  </div>
-                </div>
+        <div className="container-page">
+          <form ref={postOrder} onSubmit={submit}>
+            <div className="wrapper-forms">
+              <div className="forms-intro-text">
+                <h1 className="turquoise text-center">Pay with Credit Card</h1>
+                <p className="text-center">Set you credit card</p>
+              </div>
+              <div className="credit-card-container">
                 <div className="form-group">
                   <div className="field-group">
                     <div className="field">
-                      <label htmlFor="name">Full name</label>
-                      <input type="text" name="name" id="name" placeholder="Insert your full name" minLength="2" className="input-text" required />
-                      <span className="error-message">Enter a valid value</span>
-                    </div>
-                    <div className="field">
-                      <label htmlFor="card-number">Card number</label>
-                      <input type="text" name="card-number" id="card-number" placeholder="Insert card number" minLength="8" maxLength="11" className="input-text" required />
+                      <label htmlFor="card">Credit card</label>
+                      <select name="cards" id="cards" placeholder="VISA / DANKORT" className="input-text" required>
+                        <option value="volvo">VISA / DANKORT</option>
+                        <option value="saab">MASTERCARD</option>
+                        <option value="fiat">AMERICAN EXPRESS</option>
+                        <option value="audi">OTHER</option>
+                      </select>
+
                       <span className="error-message">Enter a valid value</span>
                     </div>
                   </div>
-                  <div className="field-group">
-                    <div className="field">
-                      <label htmlFor="code">Check digits</label>
-                      <input type="text" name="code" id="code" placeholder="Insert card check digits" minLength="3" maxLength="3" className="input-text" required />
-                      <span className="error-message">Enter a valid value</span>
+                  <div className="form-group">
+                    <div className="field-group">
+                      <div className="field">
+                        <label htmlFor="name">Full name</label>
+                        <input type="text" name="name" id="name" placeholder="Insert your full name" minLength="2" className="input-text" required />
+                        <span className="error-message">Enter a valid value</span>
+                      </div>
+                      <div className="field">
+                        <label htmlFor="card-number">Card number</label>
+                        <input type="text" name="card-number" id="card-number" placeholder="Insert card number" minLength="8" maxLength="11" className="input-text" required />
+                        <span className="error-message">Enter a valid value</span>
+                      </div>
                     </div>
-                    <div className="field">
-                      <label htmlFor="date">Expiration date</label>
-                      <input type="date" name="date" id="date" placeholder="Insert expiration date" className="input-text" required />
-                      <span className="error-message">Enter a valid value</span>
+                    <div className="field-group">
+                      <div className="field">
+                        <label htmlFor="code">Check digits</label>
+                        <input type="text" name="code" id="code" placeholder="Insert card check digits" minLength="3" maxLength="3" className="input-text" required />
+                        <span className="error-message">Enter a valid value</span>
+                      </div>
+                      <div className="field">
+                        <label htmlFor="date">Expiration date</label>
+                        <input type="date" name="date" id="date" placeholder="Insert expiration date" className="input-text" required />
+                        <span className="error-message">Enter a valid value</span>
+                      </div>
                     </div>
                   </div>
                 </div>
+                <button className="btn-main" type="submit">
+                  PAY
+                </button>
               </div>
-              <button className="btn-main" type="submit">
-                PAY
-              </button>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </section>
     </>
   );

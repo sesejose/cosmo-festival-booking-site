@@ -4,10 +4,10 @@ import Viptickets from "./Vipticket";
 import Context from "../Context";
 import React from "react";
 import { useState, useEffect, useRef, useContext } from "react";
-import Basket from "../../components/Booking/Basket";
+import Basket from "./Basket";
 import { sendEtagResponse } from "next/dist/server/send-payload";
-import Anchor from "../../components/Anchor";
-import Pages from "../../components/Booking/Pages";
+import Anchor from "../Anchor";
+import Pages from "./Pages";
 
 export default function Tickets(props) {
   const context = useContext(Context);

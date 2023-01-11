@@ -1,6 +1,6 @@
 export async function insertOrder(payload) {
-  const url = "https://vixqydjnpjfivynbkcev.supabase.co/rest/v1/orders";
-  const res = await fetch(url + "/rest/v1/order", {
+  const url = "https://vixqydjnpjfivynbkcev.supabase.co";
+  const res = await fetch(url + "/rest/v1/orders", {
     method: "POST",
     headers: {
       apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeHF5ZGpucGpmaXZ5bmJrY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjY1OTg4MTYsImV4cCI6MTk4MjE3NDgxNn0.ZpCqZ-NGVr--Shy5gIhAsap8x7bM9hIetyWffTdJYpE",

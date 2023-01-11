@@ -58,9 +58,10 @@ export default function Payment(props) {
   }
 
   // Post ORDER in supabase after pay !
+  // The Object to post is the payload / argument of the insertOrder() function in Db.js
   async function postOrderSupabase() {
     const response = await insertOrder({
-      id: 2,
+      id: 5,
       reg_tickets: context.cartReg.amount,
       vip_tickets: context.cartReg.amount,
       accommodation: context.spot,

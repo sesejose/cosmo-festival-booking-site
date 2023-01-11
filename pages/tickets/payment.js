@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useRef } from "react";
 import { insertOrder } from "../../components/Booking/Db";
-import Thanks from "./Thanks";
+// import Thanks from "../../components/Booking/Thanks";
 import Context from "../../components/Context";
 import { useContext } from "react";
 // import Basket from "../../components/Booking/Basket";

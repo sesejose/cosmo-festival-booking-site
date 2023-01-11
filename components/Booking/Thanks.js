@@ -1,7 +1,6 @@
 import React from "react";
-// import Basket from "../../components/Booking/Basket";
 
-function thanks() {
+function Thanks() {
   return (
     <>
       <section id="thanks">
@@ -90,4 +89,4 @@ function thanks() {
   );
 }
 
-export default thanks;
+export default Thanks;

@@ -36,9 +36,13 @@ function MyApp({ Component, pageProps }) {
   const [area3, setArea3] = useState(areas[2]);
   const [area4, setArea4] = useState(areas[3]);
   const [area5, setArea5] = useState(areas[4]);
-  // Camprops.
+  // Reserve ID
   const [reserveID, setReserveID] = useState({});
+  // Camping Price
   const [fixedCampingPrice, setFixedCampingPrice] = useState(99);
+  // Users Personal information
+  const [orderId, setOrderId] = useState();
+  const [users, setUsers] = useState([]);
 
   // Fetching tickets from Supabase (Tickets table)
   useEffect(() => {
@@ -130,6 +134,10 @@ function MyApp({ Component, pageProps }) {
         area5,
         spot,
         setSpot,
+        orderId,
+        setOrderId,
+        users,
+        setUsers,
         reserveID,
         setReserveID,
       }}

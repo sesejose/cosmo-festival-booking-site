@@ -19,6 +19,7 @@ export default function Personal(props) {
       personalInfosReg.push(
         <Owner
           // chosenArea={props.chosenArea}
+          ownerRef={ownerRef}
           index={i}
           key={i}
         />
@@ -32,6 +33,7 @@ export default function Personal(props) {
       personalInfosVip.push(
         <Owner
           // chosenArea={props.chosenArea}
+          ownerRef={ownerRef}
           index={i}
           key={i}
         />
@@ -39,43 +41,29 @@ export default function Personal(props) {
     }
     return personalInfosVip;
   }
-  const fullfillres = useRef();
-  async function fullfillReservation() {
-    const url = "https://bitter-moon-5524.fly.dev";
-    const res = await fetch(url + "/fullfill-reservation", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: context.reserveID,
-      }),
-    });
-    console.log(context.reserveID.id);
-    return await res.json();
-  }
+
+  // 1. Submit the form and call back the setUser function
+  // 2. Then move to payment --> Callback the function that enables Go to Checkout
   async function submit(e) {
     e.preventDefault();
-    fullfillReservation();
+    settingUsersPersonalInfo();
+    // Setting users State
+    console.log("submit works");
   }
-  // export async function insertOrder(payload) {
-  //   const key =
-  //     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dnhic2FiYnR2eWphZGFyenp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxMDA0NTQsImV4cCI6MTk4MzY3NjQ1NH0.Z4BtwWfFmlNfVJk5UlDZ9OMPrfXOSQaCkfTY6zyUCNE";
-  //   const url = "https://xzvxbsabbtvyjadarzzt.supabase.co";
-  //   const res = await fetch(url + "/rest/v1/simpleshop", {
-  //     method: "POST",
-  //     headers: {
-  //       apikey:
-  //         "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dnhic2FiYnR2eWphZGFyenp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxMDA0NTQsImV4cCI6MTk4MzY3NjQ1NH0.Z4BtwWfFmlNfVJk5UlDZ9OMPrfXOSQaCkfTY6zyUCNE",
-  //       Prefer: "return=representation",
-  //       Authorization:
-  //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dnhic2FiYnR2eWphZGFyenp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjgxMDA0NTQsImV4cCI6MTk4MzY3NjQ1NH0.Z4BtwWfFmlNfVJk5UlDZ9OMPrfXOSQaCkfTY6zyUCNE",
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(payload),
-  //   });
-  //   return await res.json();
-  // }
+
+  //Setting USERS --> Called back from submit()
+  const postOrder = useRef(null);
+  const ownerRef = useRef();
+  function settingUsersPersonalInfo() {
+    context.setUsers([
+      {
+        name: ownerRef.current.elements.name.value,
+        email: ownerRef.current.elements.email.value,
+      },
+    ]);
+    console.log(context.users);
+    console.log("Setting users works");
+  }
 
   return (
     <>
@@ -96,7 +84,7 @@ export default function Personal(props) {
                     </button>
                   )}
                   {showFormReg && (
-                    <form ref={fullfillres} onSubmit={submit} className="personal-form-reg">
+                    <form onSubmit={submit} className="personal-form-reg">
                       {displayRegInfo()}{" "}
                       <button className="btn-main" type="submit">
                         Submit
@@ -111,7 +99,7 @@ export default function Personal(props) {
                     </button>
                   )}
                   {showFormVip && (
-                    <form ref={fullfillres} onSubmit={submit} className="personal-form-vip">
+                    <form onSubmit={submit} className="personal-form-vip">
                       {displayVipInfo()}
                       <button className="btn-main" type="submit">
                         Submit

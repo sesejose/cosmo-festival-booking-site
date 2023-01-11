@@ -1,9 +1,15 @@
 import React from "react";
+import { useRef, useContext } from "react";
+// import React, { useContext, useRef } from "react";
+import Context from "../Context";
 
 function Owner(props) {
+  const context = useContext(Context);
+  // const ownerRef = useRef();
+
   return (
     <>
-      <form className="form-group">
+      <form className="form-group" ref={props.ownerRef}>
         <fieldset>
           <legend>
             <h3 className="white">{props.index === 0 ? "Your personal information" : `Guest ${props.index} information`}</h3>
@@ -42,6 +48,9 @@ function Owner(props) {
             </div>
           </div>
         </fieldset>
+        {/* <button type={submit} className="btn-pink" onClick={settingUsersPersonalInfo}>
+          Add user info
+        </button> */}
       </form>
     </>
   );

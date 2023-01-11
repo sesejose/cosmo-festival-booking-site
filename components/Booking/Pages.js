@@ -1,9 +1,9 @@
 import React from "react";
 import Ticket from "./Tickets";
 import Acommodation from "./Accommodation";
-import Personal from "../../components/Booking/Personal";
-import Payment from "../../components/Booking/Payment";
-import Thanks from "../../components/Booking/Thanks";
+import Personal from "./Personal";
+import Payment from "./Payment";
+import Thanks from "./Thanks";
 import Context from "../Context";
 import { useContext } from "react";
 

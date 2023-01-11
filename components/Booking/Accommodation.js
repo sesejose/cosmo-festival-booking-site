@@ -5,16 +5,31 @@ import Context from "../Context";
 export default function Accommodation(props) {
   const context = useContext(Context);
 
+  // 1. Setting Spot from the input ratio
   function defineSpot(e) {
     const target = e.target.value;
     context.setSpot(target);
   }
-
+  // 2. The Accommodation form has the reserveSpot as ref=""
   const reserveSpot = useRef();
   const ticketsQuantity = context.cartReg.amount + context.cartVip.amount;
   const spotReserved = context.spot;
 
-  // Then update / add it to the cart
+  // 3. Submit the form when click the button "Reserve Spot"
+  // And callback the reserveTicket() function with the payload argument
+  async function submit(e) {
+    e.preventDefault();
+    reserveTicket({
+      area: spotReserved,
+      amount: ticketsQuantity,
+    });
+  }
+  // console.log(spotReserved);
+  // console.log(ticketsQuantity);
+  // console.log(context.reserveID);
+  console.log(context.reserveID.id);
+
+  // 4. PUT reserve spot and get ID
   function reserveTicket(payload) {
     fetch("https://bitter-moon-5524.fly.dev/reserve-spot", {
       method: "PUT",
@@ -25,23 +40,17 @@ export default function Accommodation(props) {
     })
       .then((response) => response.json())
       // .then((response) => console.log(response))
-      .then((response) => context.setReserveID(response.id))
+      // .then((response) => context.setReserveID(response.id))
+      .then((response) => context.setReserveID(response))
 
       .catch((err) => console.error(err));
   }
-  // timeout 300000
-  // console.log(reserveTicket);
-  async function submit(e) {
-    e.preventDefault();
-    reserveTicket({
-      area: spotReserved,
-      amount: ticketsQuantity,
-    });
-  }
-  console.log(props.reserveID);
+
+  // 5. timeout 300000
+
   return (
     <>
-      <section id="acommodation">
+      <section id="accommodation">
         <div className="container-page">
           <div className="wrapper-forms">
             <div className="forms-intro-text">
@@ -109,8 +118,10 @@ export default function Accommodation(props) {
                     <input type="radio" id="alfheim" name="campingArea" value="Alfheim" className="radio-input" onClick={defineSpot}></input>
                   </div>
                 </div>
+                <button className="btn-main" type="submit">
+                  Reserve Spot
+                </button>
               </form>
-              <button className="btn-main">Personal information</button>
             </div>
             <div></div>
           </div>

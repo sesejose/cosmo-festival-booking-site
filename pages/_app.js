@@ -4,6 +4,7 @@ import Layout from "../components/Layout";
 import Basket from "../components/Booking/Basket";
 import "../styles/style.css";
 import { setRevalidateHeaders } from "next/dist/server/send-payload";
+import { checkIsManualRevalidate } from "next/dist/server/api-utils";
 
 function MyApp({ Component, pageProps }) {
   // const [state, setState] = useState("default");
@@ -41,6 +42,7 @@ function MyApp({ Component, pageProps }) {
   // Camping Price
   const [fixedCampingPrice, setFixedCampingPrice] = useState(99);
   // Users Personal information
+  const [orders, setOrders] = useState();
   const [orderId, setOrderId] = useState();
   const [users, setUsers] = useState([]);
 
@@ -86,6 +88,43 @@ function MyApp({ Component, pageProps }) {
     }
     getAreas();
   }, []);
+
+  // Fetching Orders from Supabase (Orders table)
+  useEffect(() => {
+    async function getOrders() {
+      const url = "https://vixqydjnpjfivynbkcev.supabase.co/rest/v1/orders";
+      const headers = {
+        "Content-Type": "application/json",
+        apikey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeHF5ZGpucGpmaXZ5bmJrY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjY1OTg4MTYsImV4cCI6MTk4MjE3NDgxNn0.ZpCqZ-NGVr--Shy5gIhAsap8x7bM9hIetyWffTdJYpE",
+        Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZpeHF5ZGpucGpmaXZ5bmJrY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjY1OTg4MTYsImV4cCI6MTk4MjE3NDgxNn0.ZpCqZ-NGVr--Shy5gIhAsap8x7bM9hIetyWffTdJYpE",
+        Prefer: "return=minimal",
+      };
+      const options = {
+        method: "GET",
+        headers: headers,
+      };
+      const body = {
+        body: "false",
+      };
+      // Await then execute the code.
+      const res = await fetch(url, options, body); // Fetchs the data (await)
+      const orders = await res.json(); //When it's done getting it
+      setOrders(orders);
+      console.log(orders);
+      generateNewId(orders);
+    }
+    getOrders();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function generateNewId(arr) {
+    arr.forEach((item) => {
+      if (item.id === orderId) {
+        setOrderId(item.id + 1);
+      }
+    });
+    console.log(orderId);
+  }
 
   return (
     <Context.Provider

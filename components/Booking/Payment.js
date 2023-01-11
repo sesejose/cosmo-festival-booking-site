@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react";
+import { useEffect } from "react";
 import { useRef } from "react";
-import { insertOrder } from "./Db";
-import Thanks from "./Thanks";
-import Context from "../Context";
 import { useContext } from "react";
+import { insertOrder } from "./Db";
+import Context from "../Context";
+import Thanks from "./Thanks";
 // import Basket from "../../components/Booking/Basket";
 
 export default function Payment(props) {
@@ -58,10 +59,10 @@ export default function Payment(props) {
   }
 
   // Post ORDER in supabase after pay !
-  // The Object to post is the payload / argument of the insertOrder() function in Db.js
+  // The Object to post is the payload / Argument of the insertOrder() function in Db.js
   async function postOrderSupabase() {
     const response = await insertOrder({
-      id: 5,
+      id: context.orderId,
       reg_tickets: context.cartReg.amount,
       vip_tickets: context.cartReg.amount,
       accommodation: context.spot,

@@ -3,6 +3,7 @@ import dark_theme_logo from "../public/dark_theme_logo.png";
 import Image from "next/image";
 import Context from "./Context";
 import { useContext } from "react";
+import Link from "next/link";
 
 export default function Nav() {
   const context = useContext(Context);
@@ -34,29 +35,29 @@ export default function Nav() {
         <div className="nav-container" id="menu">
           <ul>
             <li>
-              <Anchor className="nav-home" href={"/"} onClick={closeMenu}>
+              <Link className="nav-home" href={"/"} onClick={closeMenu}>
                 Home
-              </Anchor>
+              </Link>
             </li>
             <li>
-              <Anchor className="nav-tickets" href={"/tickets"} onClick={closeMenu}>
+              <Link className="nav-tickets" href={"/tickets"} onClick={closeMenu}>
                 Tickets
-              </Anchor>
+              </Link>
             </li>
             <li>
-              <Anchor className="nav-lineup" href={"/lineup"} onClick={closeMenu}>
+              <Link className="nav-lineup" href={"/lineup"} onClick={closeMenu}>
                 Line Up
-              </Anchor>
+              </Link>
             </li>
             <li>
-              <Anchor className="nav-acommodation" href={"/acommodation"} onClick={closeMenu}>
+              <Link className="nav-accommodation" href={"/accommodation"} onClick={closeMenu}>
                 Acomodation
-              </Anchor>
+              </Link>
             </li>
             <li>
-              <Anchor className="nav-about" href={"/about"} onClick={closeMenu}>
+              <Link className="nav-about" href={"/about"} onClick={closeMenu}>
                 About
-              </Anchor>
+              </Link>
             </li>
           </ul>
           <a className="close" onClick={closeMenu}>

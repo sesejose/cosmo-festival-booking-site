@@ -72,7 +72,7 @@ export default function Payment(props) {
       green: context.green,
       tent2pers: context.totalTent2,
       tent3pers: context.totalTent3,
-      users: [],
+      users: {},
     });
     console.log(response);
     if (response && response.length) {

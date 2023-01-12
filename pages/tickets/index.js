@@ -89,13 +89,13 @@ function Pages(props) {
               activeStep={activeStep}
               position="static"
               nextButton={
-                <Button className="btn-turquoise btn-steps" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                <Button className="btn-steps" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
                   Next
                   {theme.direction === "rtl" ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
                 </Button>
               }
               backButton={
-                <Button className="btn-turquoise btn-steps" onClick={handleBack} disabled={activeStep === 0}>
+                <Button className="btn-steps" onClick={handleBack} disabled={activeStep === 0}>
                   {theme.direction === "rtl" ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
                   Back
                 </Button>

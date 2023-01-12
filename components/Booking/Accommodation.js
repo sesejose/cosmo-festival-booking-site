@@ -23,7 +23,28 @@ export default function Accommodation(props) {
       area: spotReserved,
       amount: ticketsQuantity,
     });
+    // startTimer();
   }
+
+  useEffect(() => {
+    // let seconds = 30;
+    function startTimer() {
+      // context.setTime(300000);
+      // console.log(typeof context.time);
+      // context.setTime(seconds);
+      const timer = document.getElementById("timerBasket");
+      timer.innerHTML = context.time;
+      timer.style.color = "turquoise";
+      if (context.time == 0) {
+        alert("Your time to complete the order is over!");
+      } else {
+        context.setTime(context.time--);
+        console.log(context.time);
+      }
+    }
+    setTimeout(startTimer(), 30);
+  }, []);
+
   // console.log(spotReserved);
   // console.log(ticketsQuantity);
   // console.log(context.reserveID);
@@ -54,7 +75,7 @@ export default function Accommodation(props) {
         <div className="container-page">
           <div className="wrapper-forms">
             <div className="forms-intro-text">
-              <h1 className="turquoise text-center">Acommodation</h1>
+              <h1 className="turquoise text-center">Accommodation</h1>
               <p className="text-center">Select the area in the camping where you wanna set your tent/s.</p>
               <button className="btn-acommodation" onClick={displayAcommodation}>
                 Learn more here

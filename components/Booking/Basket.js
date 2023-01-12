@@ -65,7 +65,9 @@ export default function Basket(props) {
             <h2 className="turquoise">Summary order</h2>
             <div className="posts">
               <h4 className="white">Time to complete the order:</h4>
-              <h4 className="turuoise">0</h4>
+              <h4 className="turuoise" id="timerBasket">
+                context.time
+              </h4>
             </div>
             <hr></hr>
             <div className="posts">
@@ -157,7 +159,7 @@ export default function Basket(props) {
               <h3 className="white">DKK {context.cartVip.amount * context.cartVip.price + context.cartReg.amount * context.cartReg.price + context.fixedCampingPrice + context.greenPrice + context.tent2Price + context.tent3Price}</h3>
             </div>
           </div>
-          <button className="basket-display-pay btn-main">PAY</button>
+          {/* <button className="basket-display-pay btn-main">PAY</button> */}
         </div>
       </section>
     </>

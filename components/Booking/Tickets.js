@@ -233,11 +233,11 @@ export default function Tickets(props) {
                 </form>
               </div>
               <button className="btn-main" onClick={setTentsQuantities}>
-                Add tents to cart
+                Add to cart
               </button>
-              <Anchor className="btn-main" href={"/tickets/accommodation"}>
+              {/* <Anchor className="btn-main" href={"/tickets/accommodation"}>
                 Choose Accommodation
-              </Anchor>
+              </Anchor> */}
               {/* <button
                 className="btn-main"
                 onClick={() => {

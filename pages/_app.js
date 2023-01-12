@@ -45,6 +45,8 @@ function MyApp({ Component, pageProps }) {
   const [orders, setOrders] = useState();
   const [orderId, setOrderId] = useState();
   const [users, setUsers] = useState([]);
+  // Timer
+  const [time, setTime] = useState(30);
 
   // Fetching tickets from Supabase (Tickets table)
   useEffect(() => {
@@ -179,6 +181,8 @@ function MyApp({ Component, pageProps }) {
         setUsers,
         reserveID,
         setReserveID,
+        time,
+        setTime,
       }}
     >
       <Layout>

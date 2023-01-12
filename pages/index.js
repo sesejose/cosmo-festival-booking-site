@@ -68,6 +68,7 @@ export default function Home({ areas, schedule, bands }) {
         <title>The Festival | Home</title>
         <meta name="description" content="This is my KEA thrid semester Frontend Elective exam" />
         <meta name="keywords" content="festival, music, exam, reactjs, nextjs"></meta>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
       </Head>
       <div className="container-page">
         <Herosection />

@@ -53,22 +53,15 @@ const steps = [
   },
 ];
 
-function Pages(props) {
-  const context = useContext(Context);
-  const ticketsRef = useRef();
-  const accommodationRef = useRef();
-  const personalRef = useRef();
-  const paymentRef = useRef();
-  const thanksRef = useRef();
-
-  //Steps
+export default function Test() {
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = steps.length;
-  // Handle functions onClick
+
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
+
   const handleBack = () => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
@@ -81,7 +74,7 @@ function Pages(props) {
             {/* <Paper>
             <Typography className="white">{steps[activeStep].label}</Typography>
           </Paper> */}
-            <Box>{steps[activeStep].description}</Box>
+            <Box className="white">{steps[activeStep].description}</Box>
             <MobileStepper
               className="nav-steps"
               variant="text"
@@ -107,12 +100,3 @@ function Pages(props) {
     </>
   );
 }
-
-export default Pages;
-
-// ReactDOM.render(
-//   <BrowserRouter>
-//     <Pages></Pages>
-//   </BrowserRouter>,
-//   document.getElementById("root")
-// );

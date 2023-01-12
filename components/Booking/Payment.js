@@ -78,6 +78,39 @@ export default function Payment(props) {
     }
   }
 
+  // Changing focus() from CreditCard
+  useEffect(() => {
+    async function creditCard() {
+      //creditCard.elements.card.blur(); // It's does not necessary. With the next line it becomes automaticlaly blured
+      const creditCard = document.getElementById("myform");
+      console.log(creditCard);
+
+      creditCard.elements.card.addEventListener("input", () => {
+        if (creditCard.elements.card.value.length === 16) {
+          // console.log("16 reached");
+          creditCard.elements.code.focus();
+        }
+      });
+
+      creditCard.elements.code.addEventListener("input", () => {
+        if (creditCard.elements.code.value.length === 3) {
+          console.log("2 reached");
+          creditCard.elements.date.focus();
+        }
+      });
+    }
+    creditCard();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  function errorMessage() {
+    const error = document.querySelector(".error-message");
+    if (isNaN(document.getElementById("name").value)) {
+      error.style.display = "flex";
+    }
+    console.log(error.textContent);
+  }
+
   return (
     <>
       {/* 15. Ternary operator */}
@@ -86,7 +119,7 @@ export default function Payment(props) {
       ) : (
         <section id="payment">
           <div className="container-page">
-            <form ref={fullfillres} onSubmit={submit}>
+            <form ref={fullfillres} onSubmit={submit} id="myform">
               <div className="wrapper-forms">
                 <div className="forms-intro-text">
                   <h1 className="turquoise text-center">Pay with Credit Card</h1>
@@ -96,8 +129,8 @@ export default function Payment(props) {
                   <div className="form-group">
                     <div className="field-group">
                       <div className="field">
-                        <label htmlFor="card">Credit card</label>
-                        <select name="cards" id="cards" placeholder="VISA / DANKORT" className="input-text" required>
+                        <label htmlFor="cards">Credit card</label>
+                        <select name="cards" id="cards" placeholder="VISA / DANKORT" className="input-text" required autoFocus>
                           <option value="volvo">VISA / DANKORT</option>
                           <option value="saab">MASTERCARD</option>
                           <option value="fiat">AMERICAN EXPRESS</option>
@@ -111,12 +144,12 @@ export default function Payment(props) {
                       <div className="field-group">
                         <div className="field">
                           <label htmlFor="name">Full name</label>
-                          <input type="text" name="name" id="name" placeholder="Insert your full name" minLength="2" className="input-text" required />
+                          <input type="text" name="name" id="name" placeholder="Insert your full name" minLength="4" className="input-text" required />
                           <span className="error-message">Enter a valid value</span>
                         </div>
                         <div className="field">
-                          <label htmlFor="card-number">Card number</label>
-                          <input type="text" name="card-number" id="card-number" placeholder="Insert card number" minLength="8" maxLength="11" className="input-text" required />
+                          <label htmlFor="card">Card number</label>
+                          <input type="text" name="card" id="card" placeholder="Insert card number" minLength="16" size="16" className="input-text" required />
                           <span className="error-message">Enter a valid value</span>
                         </div>
                       </div>
@@ -134,7 +167,7 @@ export default function Payment(props) {
                       </div>
                     </div>
                   </div>
-                  <button className="btn-main" type="submit">
+                  <button className="btn-main" type="submit" onClick={errorMessage}>
                     PAY
                   </button>
                 </div>

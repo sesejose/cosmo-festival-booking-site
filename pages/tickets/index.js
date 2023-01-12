@@ -81,7 +81,7 @@ function Pages(props) {
             {/* <Paper>
             <Typography className="white">{steps[activeStep].label}</Typography>
           </Paper> */}
-            <Box>{steps[activeStep].description}</Box>
+            <Box className="container-page">{steps[activeStep].description}</Box>
             <MobileStepper
               className="nav-steps"
               variant="text"

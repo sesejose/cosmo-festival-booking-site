@@ -72,8 +72,10 @@
   --shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.25), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
 }
 
+html,
 body {
   background-color: var(--black);
+  height: 100%;
 }
 
 .hiden {
@@ -483,11 +485,19 @@ p {
 
 /* About */
 
+#tickets,
+#accommodation,
+#personal,
+#payment,
+#thanks {
+  height: 100%;
+}
+
 #pages {
   width: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* height: 100vh; */
+  /* height: 100%; */
   /* display: flex; */
   /* align-items: center; */
 }
@@ -892,17 +902,18 @@ footer svg {
   display: flex;
   flex-flow: row;
   justify-content: space-around;
-  /* width: 100vw; */
-  /* display: grid; */
-  /* grid-template-columns: 75% 25%; */
+  height: 100vh;
 }
 .container-page {
-  /* grid-column: 1/2; */
   min-width: 75vw;
   width: 100%;
   margin-top: 6.5rem;
-  /* height: 100vh; */
-  /* overflow: auto; */
+  height: 100vh;
+  /* overflow: scroll; */
+}
+.container-page {
+  height: 100%;
+  /* overflow: scroll; */
 }
 
 #basket {
@@ -911,7 +922,7 @@ footer svg {
   min-width: fit-content;
   display: none;
   border-left: 1px solid var(--pink);
-  /* overflow: scroll; */
+  overflow: scroll;
 }
 
 .tab-basket {
@@ -926,7 +937,7 @@ footer svg {
   /* height: 100vh; */
   /* padding: var(--p-large); */
   padding: var(--ptb-large);
-  overflow: scroll;
+  /* overflow: scroll; */
   margin: var(--m-auto);
   width: 80%;
 }
@@ -945,6 +956,7 @@ footer svg {
   margin: var(--m-auto);
   padding: var(--ptb-large);
   gap: 1rem;
+  height: fit-content;
 }
 
 .wrapper-ticket-downloable {
@@ -1754,6 +1766,7 @@ footer svg {
   -webkit-transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   color: var(--turquoise) !important;
+  height: 48px !important;
 }
 
 .btn-steps:hover {
@@ -1761,6 +1774,10 @@ footer svg {
   font-family: var(--font) !important;
   font-size: 1.125rem !important;
   font-weight: 500 !important;
+  line-height: 1.75 !important;
+  letter-spacing: 0.02857em !important;
+  text-transform: uppercase !important;
+  min-width: 64px !important;
   color: var(--black) !important;
   border: 1px solid var(--turquoise) !important;
   background-color: var(--turquoise) !important;

@@ -11,7 +11,10 @@ import Thanks from "./Thanks";
 export default function Payment(props) {
   const context = useContext(Context);
   const [paymentCompleted, setPaymentCompleted] = useState(false);
-  // const [ages, setAges] = useState();
+  // Momentjs
+  const moment = require("moment");
+  const a = moment().toString();
+  console.log(a);
   /* Here the POST with the object as example from Insomnia
 
 {
@@ -104,18 +107,54 @@ export default function Payment(props) {
   }, []);
 
   function errorMessage() {
-    const error = document.querySelector(".error-message");
-    if (isNaN(document.getElementById("name").value)) {
-      error.style.display = "flex";
+    const errorCard = document.querySelector(".error-card-message");
+    const errorName = document.querySelector(".error-name-message");
+    const errorCode = document.querySelector(".error-code-message");
+    const errorDate = document.querySelector(".error-date-message");
+    const date = document.getElementById("date");
+    //Card
+    if (isNaN(document.getElementById("card").value)) {
+      errorCard.style.display = "flex";
     }
-    console.log(error.textContent);
+    //Name
+    if (document.getElementById("name").length < 3) {
+      errorName.style.display = "flex";
+    }
+    //Code
+    if (isNaN(document.getElementById("code").value)) {
+      errorCode.style.display = "flex";
+    }
+    //Date
+    if (moment(document.getElementById("date").value)) {
+      errorCode.style.display = "flex";
+    }
+
+    //Date
+    // if (date.value == "" || dateText.value == "") {
+    //   console.log("* is required");
+    // } else {
+    //   console.log("Dates filled.");
+    //   e.preventDefault();
+    // }
+    // if (isDate(dateText.value) && !dateText.value.match("/^d{4}[/-](0?[1-9]|1[012])[/-](0?[1-9]|[12][0-9]|3[01])$/")) {
+    //   console.log("* invalid date, required format yyyy-mm-dd");
+    //   e.preventDefault();
+    // } else {
+    //   console.log("Correct Date");
+    //   console.log(error.textContent);
+    // }
   }
 
   return (
     <>
       {/* 15. Ternary operator */}
       {paymentCompleted ? (
-        <Thanks />
+        // <Thanks />
+        <div>
+          <h1 className="turquoise">Congratulations!</h1>
+          <h3>Your order is complete!</h3>
+          <p>You will be receiving a confirmation email with order details.</p>
+        </div>
       ) : (
         <section id="payment">
           <div className="container-page">
@@ -131,13 +170,12 @@ export default function Payment(props) {
                       <div className="field">
                         <label htmlFor="cards">Credit card</label>
                         <select name="cards" id="cards" placeholder="VISA / DANKORT" className="input-text" required autoFocus>
-                          <option value="volvo">VISA / DANKORT</option>
-                          <option value="saab">MASTERCARD</option>
-                          <option value="fiat">AMERICAN EXPRESS</option>
-                          <option value="audi">OTHER</option>
+                          <option value="visa">VISA / DANKORT</option>
+                          <option value="master">MASTERCARD</option>
+                          <option value="american">AMERICAN EXPRESS</option>
+                          <option value="other">OTHER</option>
                         </select>
-
-                        <span className="error-message">Enter a valid value</span>
+                        <span className="error-cards-message">Enter a valid value</span>
                       </div>
                     </div>
                     <div className="form-group">
@@ -145,24 +183,24 @@ export default function Payment(props) {
                         <div className="field">
                           <label htmlFor="name">Full name</label>
                           <input type="text" name="name" id="name" placeholder="Insert your full name" minLength="4" className="input-text" required />
-                          <span className="error-message">Enter a valid value</span>
+                          <span className="error-name-message">Enter a valid value</span>
                         </div>
                         <div className="field">
                           <label htmlFor="card">Card number</label>
                           <input type="text" name="card" id="card" placeholder="Insert card number" minLength="16" size="16" className="input-text" required />
-                          <span className="error-message">Enter a valid value</span>
+                          <span className="error-card-message">Enter a valid value</span>
                         </div>
                       </div>
                       <div className="field-group">
                         <div className="field">
                           <label htmlFor="code">Check digits</label>
                           <input type="text" name="code" id="code" placeholder="Insert card check digits" minLength="3" maxLength="3" className="input-text" required />
-                          <span className="error-message">Enter a valid value</span>
+                          <span className="error-code-message">Enter a valid value</span>
                         </div>
                         <div className="field">
                           <label htmlFor="date">Expiration date</label>
                           <input type="date" name="date" id="date" placeholder="Insert expiration date" className="input-text" required />
-                          <span className="error-message">Enter a valid value</span>
+                          <span className="error-date-message">Enter a valid value</span>
                         </div>
                       </div>
                     </div>

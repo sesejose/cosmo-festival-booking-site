@@ -667,7 +667,7 @@ fieldset {
 }
 
 select.input-text {
-  background-color: var(--black);
+  background-color: var(--gray);
   color: var(--white);
 }
 
@@ -1476,7 +1476,11 @@ footer svg {
   outline: 0;
 }
 
-.error-message {
+.error-cards-message,
+.error-name-message,
+.error-card-message,
+.error-code-message,
+.error-date-message {
   color: var(--orange);
   display: none;
 }

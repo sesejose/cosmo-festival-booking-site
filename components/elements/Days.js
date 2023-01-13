@@ -8,7 +8,7 @@ export default function Days({ setFilter }) {
     <>
       <section id="days">
         <h1>Line up</h1>
-        <div className="flex-row-space-around container">
+        <div className="flex-row container">
           <button type="button" onClick={() => setFilter("mon")} className="btn-days">
             Monday
           </button>

@@ -12,7 +12,8 @@ export default function Herosection() {
             <h2 className="pink huge">15/12</h2>
             <div className="will-you-and-btn-container">
               <h3 className="will-you pink">
-                WILL<br></br>YOU<br></br>MISS<br></br>IT?
+                {/* WILL<br></br>YOU<br></br>MISS<br></br>IT? */}
+                WILL YOU MISS IT?
               </h3>
               <Link className="btn-hero" href="/tickets">
                 BOOK NOW

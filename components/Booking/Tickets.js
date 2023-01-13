@@ -212,7 +212,7 @@ export default function Tickets(props) {
                 <form>
                   <label htmlFor="tents-quantity"></label>
                   <h3 className="pink">Tent (2 persons) 299,- DKK</h3>
-                  <div className="flex-row-space-around">
+                  <div className="tents-input-container">
                     <input type="number" name="tents-quantity" id="tent2-quantity" min="0" max={maxReg} placeholder="0" disabled className="input-number-tents" onChange={displayQuantityTent2}></input>
                     <h3 className="tent2 turquoise">0x</h3>
                     <h3 className="white">299,- DKK</h3>
@@ -223,7 +223,7 @@ export default function Tickets(props) {
                 <form>
                   <label htmlFor="tents-quantity"></label>
                   <h3 className="pink">Tent (3 persons) 399,- DKK</h3>
-                  <div className="flex-row-space-around">
+                  <div className="tents-input-container">
                     <input type="number" name="tents-quantity" id="tent3-quantity" min="0" max={maxVip} placeholder="0" disabled className="input-number-tents" onChange={displayQuantityTent3}></input>
                     <h3 className="tent3 turquoise">0x</h3>
                     <h3 className="white">399,- DKK</h3>

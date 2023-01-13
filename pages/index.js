@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Herosection from "../components/elements/Herosection";
 import Lineup from "../components/elements/Lineup";
-import TIcketsmain from "../components/elements/TIcketsmain";
+import Ticketsmain from "../components/elements/Ticketsmain";
 import Accomodationsection from "../components/elements/Accomodationsection";
 import Days from "../components/elements/Days";
 import Basket from "../components/Booking/Basket";
@@ -74,7 +74,7 @@ export default function Home({ areas, schedule, bands }) {
         <Herosection />
         <Days setFilter={setFilter} />
         <Lineup bands={bands} schedule={schedule} filter={filter} />
-        <TIcketsmain />
+        <Ticketsmain />
         <Accomodationsection />
       </div>
       <Basket></Basket>

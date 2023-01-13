@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Head from "next/head";
 import Herosection from "../components/elements/Herosection";
 import Lineup from "../components/elements/Lineup";
-import Ticketsmain from "../components/elements/Ticketsmain";
+import TicketsHome from "../components/TicketsHome";
 import Accomodationsection from "../components/elements/Accomodationsection";
 import Days from "../components/elements/Days";
 import Basket from "../components/Booking/Basket";

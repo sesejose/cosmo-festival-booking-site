@@ -74,7 +74,7 @@ export default function Home({ areas, schedule, bands }) {
         <Herosection />
         <Days setFilter={setFilter} />
         <Lineup bands={bands} schedule={schedule} filter={filter} />
-        <Ticketsmain />
+        <TicketsHome />
         <Accomodationsection />
       </div>
       <Basket></Basket>

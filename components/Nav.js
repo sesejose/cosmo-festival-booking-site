@@ -12,7 +12,7 @@ export default function Nav() {
       <nav className="nav">
         <div className="logo">
           {/* <h3 className="white">Logo</h3> */}
-          <Link className="nav-home" href={"/"} onClick={closeMenu}>
+          <Link className="nav-home" href={"/"}>
             <Image className="logo" src={dark_theme_logo} alt={""} width={"50"} height={"45"} priority sizes="(max-width: 700px) 100vw, 700px" />
           </Link>
         </div>

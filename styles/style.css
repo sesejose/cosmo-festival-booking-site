@@ -236,7 +236,7 @@ p {
 .will-you {
   display: flex;
   flex-flow: column;
-  text-align: right;
+  text-align: center;
   /* width: 100%; */
   /* margin-left: 64px; */
   font-size: 2rem;

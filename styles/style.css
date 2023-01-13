@@ -937,7 +937,7 @@ footer svg {
   /* height: 100vh; */
   /* padding: var(--p-large); */
   padding: var(--ptb-large);
-  /* overflow: scroll; */
+  overflow: scroll;
   margin: var(--m-auto);
   width: 80%;
 }

@@ -3,6 +3,8 @@ import Context from "../components/Context";
 import Layout from "../components/Layout";
 import Basket from "../components/Booking/Basket";
 import "../styles/style.css";
+import "../styles/mobile.css";
+import "../styles/global.css";
 import { setRevalidateHeaders } from "next/dist/server/send-payload";
 import { checkIsManualRevalidate } from "next/dist/server/api-utils";
 

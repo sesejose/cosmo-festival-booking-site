@@ -14,8 +14,8 @@ export default function TicketsHome() {
             </div>
           </div>
           <div className="desc">
-            <h2 className="turquoise">Tickets</h2>
-            <h3 className="turquoise">WHAT YOU NEED TO KNOW !</h3>
+            <h1 className="turquoise">Tickets</h1>
+            <h2 className="turquoise">Whhat you need to know!</h2>
             <p>
               Cosmo Festival is one of the most popular music festivals in Europe. Every year the event gathers the best artists and biggest DJs in electronic music. This in an event that never ends, with music 24/7 and vibes of the greatests faces
               with the best electronic music in our 3 stages.<br></br>
@@ -40,11 +40,10 @@ export default function TicketsHome() {
                 <p>and much more</p>
               </li>
             </ul>
-            <div>
-              <Link className="btn-main" href="/tickets">
-                BOOK NOW
-              </Link>
-            </div>
+
+            <Link className="btn-turquoise" href="/tickets">
+              BOOK NOW
+            </Link>
           </div>
         </div>
       </section>

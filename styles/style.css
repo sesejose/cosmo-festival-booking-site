@@ -1,4 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+/* @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap'); */
+
+/* font-family: 'Sora', sans-serif; */
+
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+/* font-family: 'Red Hat Text', sans-serif; */
+
+/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"); */
 
 /* font-family: 'Roboto Mono', monospace; */
 * {
@@ -8,7 +16,7 @@
 }
 
 :root {
-  --font: "Roboto Mono", monospace;
+  --font: "Sora", sans-serif;
   font-size: 14px;
   /* line-height: 18px; */
   word-wrap: break-word;
@@ -130,7 +138,6 @@ hr.divider {
   color: var(--gray);
 }
 
-h1,
 h2,
 h3 {
   font-family: var(--font);
@@ -139,9 +146,12 @@ h3 {
 }
 
 h1 {
+  font-family: var(--font);
   font-size: 3rem;
   line-height: auto;
   margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.125rem;
 }
 
 h2 {
@@ -178,11 +188,23 @@ p {
 
 .huge {
   font-family: var(--font);
-  font-size: 10rem;
-  line-height: auto;
-  font-weight: 100;
-  letter-spacing: -2rem;
+  font-size: 5rem;
+  line-height: 5rem;
+  font-weight: 700;
+  letter-spacing: -0.5rem;
+
+  /* opacity: 0.65; */
+}
+
+.text-hero {
+  font-family: var(--font);
+  font-size: 5rem;
+  line-height: 5rem;
+  font-weight: 700;
+  letter-spacing: -0.5rem;
   margin-bottom: 0;
+  margin-top: 4rem;
+  /* opacity: 0.65; */
 }
 
 .container {
@@ -219,11 +241,20 @@ p {
   flex-flow: column;
   width: 100%;
   height: 100%;
-  display: flex;
   justify-content: space-around;
-  /* align-items: flex-end; */
-  padding: var(--p-large);
+  padding: 0;
   position: relative;
+}
+
+.title-dates-container {
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  justify-content: center;
 }
 
 .will-you-and-btn-container {
@@ -361,10 +392,12 @@ p {
 
 .lineup a:link {
   color: var(--turquoise);
+  text-decoration: none;
 }
 
 .lineup a:visited {
   color: var(--turquoise);
+  text-decoration: none;
 }
 /* */
 .btn-days {
@@ -411,8 +444,9 @@ p {
   border: 1px solid var(--turquoise);
   background-color: transparent;
   cursor: pointer;
-  height: 48px;
+  /* height: 48px; */
   padding: 15px 32px;
+  text-decoration: none;
 }
 .btn-turquoise:hover {
   font-family: var(--font);
@@ -422,8 +456,9 @@ p {
   border: 1px solid var(--turquoise);
   background-color: var(--turquoise);
   cursor: pointer;
-  height: 48px;
+  /* height: 48px; */
   padding: 15px 32px;
+  text-decoration: none;
 }
 
 /* Tickets Home Page */
@@ -451,14 +486,14 @@ p {
 .card1 {
   transform: rotate(-20deg);
   background-color: var(--green-2);
-  width: 70%;
+  width: 100%;
   margin: var(--m-auto);
 }
 
 .card2 {
   background-color: var(--yellow);
   transform: rotate(-10deg);
-  width: 70%;
+  width: 100%;
   margin: var(--m-auto);
 }
 
@@ -475,7 +510,7 @@ p {
 /* Acommodation Home Page*/
 
 #accomodation-home {
-  background-color: var(--blue);
+  background-color: var(--gray);
 }
 .accomodation {
   display: flex;
@@ -1161,9 +1196,10 @@ footer svg {
   cursor: pointer;
   padding: 32px 32px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
 }
 .btn-hero:hover {
-  width: 100%;
+  /* width: 100%; */
   font-family: var(--font);
   font-size: 1.5rem;
   color: var(--black);
@@ -1173,6 +1209,7 @@ footer svg {
   cursor: pointer;
   padding: 32px 32px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
 }
 
 .btn-add {
@@ -1257,6 +1294,7 @@ footer svg {
   cursor: pointer;
   padding: 32px 32px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
 }
 .btn-main:hover {
   width: 100%;
@@ -1269,6 +1307,7 @@ footer svg {
   cursor: pointer;
   padding: 32px 32px;
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
 }
 
 .btn-acommodation {
@@ -1282,6 +1321,8 @@ footer svg {
   padding: 7px 16px;
   margin: var(--m-auto);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
+  height: 48px;
 }
 .btn-acommodation:hover {
   font-family: var(--font);
@@ -1294,6 +1335,8 @@ footer svg {
   padding: 7px 16px;
   margin: var(--m-auto);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  text-decoration: none;
+  height: 48px;
 }
 
 .btn-pink {
@@ -1346,6 +1389,10 @@ footer svg {
   flex-flow: column;
   justify-content: flex-start;
   gap: 1rem;
+}
+
+.type {
+  text-align: right;
 }
 
 /* Acommodation Page */
@@ -1876,7 +1923,16 @@ footer svg {
     line-height: auto;
     font-weight: 100;
     letter-spacing: -3rem;
-    margin-bottom: -5rem;
+  }
+
+  .text-hero {
+    font-family: var(--font);
+    font-size: 10rem;
+    line-height: 8rem;
+    font-weight: 700;
+    letter-spacing: -1.25rem;
+
+    /* margin-bottom: -5rem; */
   }
 
   .container {
@@ -1916,6 +1972,18 @@ footer svg {
     align-items: center;
     padding: var(--p-large);
     position: relative;
+  }
+
+  .title-dates-container {
+    display: flex;
+    flex-flow: column;
+    width: 50%;
+    height: 100%;
+    padding: 0;
+    position: relative;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: left;
   }
 
   .will-you-and-btn-container {
@@ -2052,10 +2120,12 @@ footer svg {
 
   .lineup a:link {
     color: var(--turquoise);
+    text-decoration: none;
   }
 
   .lineup a:visited {
     color: var(--turquoise);
+    text-decoration: none;
   }
   /* */
   .btn-days {
@@ -2102,8 +2172,9 @@ footer svg {
     border: 1px solid var(--turquoise);
     background-color: transparent;
     cursor: pointer;
-    height: 48px;
+    /* height: 48px; */
     padding: 15px 32px;
+    text-decoration: none;
   }
   .btn-turquoise:hover {
     font-family: var(--font);
@@ -2113,8 +2184,9 @@ footer svg {
     border: 1px solid var(--turquoise);
     background-color: var(--turquoise);
     cursor: pointer;
-    height: 48px;
+    /* height: 48px; */
     padding: 15px 32px;
+    text-decoration: none;
   }
 
   /* Tickets Home Page */
@@ -2164,7 +2236,7 @@ footer svg {
   /* Acommodation Home Page*/
 
   #accomodation-home {
-    background-color: var(--blue);
+    background-color: var(--gray);
   }
   .accomodation {
     display: flex;
@@ -2309,7 +2381,7 @@ footer svg {
   }
   .artist .stageInfo,
   .artist .artistInfo {
-    margin: 1.5rem;
+    margin: var(--mtb-auto);
   }
   .artist .stageInfo h2 {
     color: var(--pink);
@@ -2318,11 +2390,11 @@ footer svg {
     background-color: transparent;
     color: var(--turquoise);
     border: var(--turquoise) 1px solid;
-    padding: 0.5rem;
+    padding: var(--p);
   }
   .artist .stageInfo .artistSocials {
     display: flex;
-    gap: 10px;
+    gap: 1rem;
     width: 20%;
   }
   .artist .stageInfo h6,
@@ -2451,8 +2523,8 @@ footer svg {
   .footer-col3 {
     display: flex;
     flex-flow: column;
-    justify-content: baseline;
-    /* align-items: center; */
+    justify-content: flex-start;
+    align-items: flex-start;
     padding: var(--p-large);
     text-align: left;
   }
@@ -2837,6 +2909,7 @@ footer svg {
     cursor: pointer;
     padding: 32px 32px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
   }
   .btn-hero:hover {
     width: 100%;
@@ -2849,6 +2922,7 @@ footer svg {
     cursor: pointer;
     padding: 32px 32px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
   }
 
   .btn-add {
@@ -2933,6 +3007,7 @@ footer svg {
     cursor: pointer;
     padding: 32px 32px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
   }
   .btn-main:hover {
     width: 100%;
@@ -2945,6 +3020,7 @@ footer svg {
     cursor: pointer;
     padding: 32px 32px;
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
   }
 
   .btn-acommodation {
@@ -2958,6 +3034,8 @@ footer svg {
     padding: 7px 16px;
     margin: var(--m-auto);
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
+    height: 48px;
   }
   .btn-acommodation:hover {
     font-family: var(--font);
@@ -2970,6 +3048,8 @@ footer svg {
     padding: 7px 16px;
     margin: var(--m-auto);
     transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    text-decoration: none;
+    height: 48px;
   }
 
   .btn-pink {
@@ -3022,6 +3102,10 @@ footer svg {
     flex-flow: column;
     justify-content: flex-start;
     gap: 1rem;
+  }
+
+  .type {
+    text-align: right;
   }
 
   /* Acommodation Page */

@@ -11,7 +11,7 @@ export default function Band({ bands }) {
 
   return (
     <div className="container-page layout">
-      <div className="container">
+      <div>
         <section className="artist">
           <section className="artisthero">
             <Image src={artistImg} alt="artist image" />
@@ -38,13 +38,17 @@ export default function Band({ bands }) {
             </div>
           </section>  */}
 
-          <section className="artistInfo">
+          <section className="artistInfo container">
             <h2>{band.name}</h2>
-            <h5>Genre: {band.genre}</h5>
+            <p>Genre: {band.genre}</p>
             <h3>Members</h3>
             <ul>
               {band.members.map((member, index) => {
-                return <li key={index}>{member}</li>;
+                return (
+                  <li key={index}>
+                    <p>{member}</p>
+                  </li>
+                );
               })}
             </ul>
             <p>{band.bio}</p>

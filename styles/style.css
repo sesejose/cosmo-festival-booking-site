@@ -205,6 +205,7 @@ p {
 
 .huge {
   display: inline-flex;
+  justify-content: center;
   align-items: center;
   font-family: var(--font);
   font-size: 2rem;
@@ -268,7 +269,8 @@ p {
   width: 100%;
   height: 100%;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: center;
+  gap: 4rem;
   align-items: center;
   padding: 0;
   position: relative;
@@ -1929,28 +1931,20 @@ footer svg {
   height: 48px !important;
   padding: 15px 32px !important;
 }
+
 /***************************************************************************************************************************************************************************************************************************************************************************/
 /**********************************************/
 
-@media only screen and (min-width: 1200px) {
+@media only screen and (min-width: 768px) {
   /* Home wrapper */
 
   .huge {
+    justify-content: flex-start;
     font-family: var(--font);
     font-size: 6rem;
     line-height: 4rem;
     letter-spacing: -0.75rem;
   }
-  /* .huge {
-    display: inline-flex;
-    align-items: center;
-    font-family: var(--font);
-    font-size: 5rem;
-    line-height: 5rem;
-    font-weight: 700;
-    letter-spacing: -0.5rem;
-    flex-wrap: wrap;
-  } */
 
   .text-hero {
     font-family: var(--font);
@@ -1968,21 +1962,6 @@ footer svg {
   }
 
   /* Herosection */
-
-  /* .herosection {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: relative;
-    background-image: url("../public/festivalLanding.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: darken;
-    padding: var(--p-large);
-    padding: 0;
-    text-align: center;
-    height: 100vh;
-  } */
 
   .december {
     padding: var(--pl);
@@ -2206,6 +2185,13 @@ footer svg {
   /* Personal Information Page */
 
   /* Personal information Animation part */
+
+  .field-group {
+    display: flex;
+    flex-flow: row;
+    gap: 2rem;
+    padding: var(--pb);
+  }
 
   /* Payment Page */
 

@@ -1036,6 +1036,7 @@ footer svg {
 
 .sub-total-container {
   margin: var(--mtb-medium);
+  width: 100%;
 }
 
 .wrapper-forms {
@@ -1052,6 +1053,7 @@ footer svg {
   display: flex;
   flex-flow: column;
   justify-content: center;
+  /* align-items: center; */
   padding: var(--p-medium);
   border: 1px solid var(--pink);
   gap: 1rem;
@@ -1693,11 +1695,20 @@ footer svg {
 
 /* Thank you Page*/
 
+.thanks-dates {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
 .ticket-downloable {
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: flex-start;
+  align-items: flex-start;
   gap: 4rem;
 }
 
@@ -2196,6 +2207,14 @@ footer svg {
   /* Payment Page */
 
   /* Thank you Page*/
+
+  .thanks-dates {
+    flex-direction: row;
+  }
+
+  .ticket-downloable {
+    justify-content: space-between;
+  }
 
   /* All the Modals */
 

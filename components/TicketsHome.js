@@ -17,11 +17,9 @@ export default function TicketsHome() {
             <h1 className="turquoise">Tickets</h1>
             <h2 className="turquoise">Whhat you need to know!</h2>
             <p>
-              Cosmo Festival is one of the most popular music festivals in Europe. Every year the event gathers the best artists and biggest DJs in electronic music. This in an event that never ends, with music 24/7 and vibes of the greatests faces
-              with the best electronic music in our 3 stages.<br></br>
+              Cosmo Festival is an event for 18 and older.
+              <br></br>Your name is going to be printed in the ticket so your name should coincide with your name on your ID.<br></br>If your are looking for the bigwig experience, our VIP ticket is for you! Enjoy extra services as VIP, such as:
               <br></br>
-              Cosmo Festival is an event for 18 and older. Your name is going to be printed in the ticket so your name should coincide with your name on your ID.<br></br>If your are looking for the bigwig experience, our VIP ticket is for you! Enjoy
-              extra services as VIP, such as:<br></br>
             </p>
             <ul>
               <li>

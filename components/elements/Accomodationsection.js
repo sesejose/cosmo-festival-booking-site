@@ -10,7 +10,7 @@ export default function Acommodationsection() {
           <Image src={accomodationImg} alt="girl enjoying festival" width={800} height={800} />
         </div>
         <div className="desc">
-          <h1 className="turquoise">Acommodations</h1>
+          <h1 className="turquoise">Accommodations</h1>
           <h2 className="turquoise">Camping options</h2>
           <p>You can enjoy the whole experience, with our 5 camping spaces. You dont need to look else were for accomodation. The feed of prebook a camping spot is 99,-.</p>
           <Link className="btn-turquoise" href="/accomodation">

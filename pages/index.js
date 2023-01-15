@@ -6,6 +6,7 @@ import TicketsHome from "../components/TicketsHome";
 import Accomodationsection from "../components/elements/Accomodationsection";
 import Days from "../components/elements/Days";
 import Basket from "../components/Booking/Basket";
+import Intro from "../components/Intro";
 
 export default function Home({ areas, schedule, bands }) {
   const [filter, setFilter] = useState("mon");
@@ -72,6 +73,7 @@ export default function Home({ areas, schedule, bands }) {
       </Head>
       <div className="container-page">
         <Herosection />
+        <Intro />
         <Days setFilter={setFilter} />
         <Lineup bands={bands} schedule={schedule} filter={filter} />
         <TicketsHome />
